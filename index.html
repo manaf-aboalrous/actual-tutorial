@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Actual Budget — Beginner's Masterclass</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#f5f4f0;--surface:#fff;--border:#e2dfd6;--ink:#181818;
@@ -196,21 +196,106 @@ kbd{background:#e5e7eb;border:1px solid #d1d5db;border-radius:4px;padding:2px 7p
 .tip{background:#eff6ff;border:1px solid #bfdbfe;border-radius:var(--radius-sm);padding:14px 17px;font-size:14px;color:#0c4a6e;margin:16px 0;display:flex;gap:10px;line-height:1.65}
 .tip-ic{font-size:17px;flex-shrink:0}
 hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
+
+/* ── MODE SELECT CARDS (lesson 2) ── */
+.mode-select-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+#mode-card-envelope { border-color: var(--green); box-shadow: 0 0 0 3px rgba(22,163,74,.12); }
+#mode-card-tracking  { border-color: var(--border); box-shadow: none; }
+#mode-card-tracking.selected  { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(180,83,9,.1); }
+#mode-card-envelope.selected  { border-color: var(--green); box-shadow: 0 0 0 3px rgba(22,163,74,.12); }
+@media(max-width:520px) { #p1 .mode-select-card { width:100%; } }
+@media(max-width:560px) { #mode-cards-grid { grid-template-columns: 1fr !important; } }
+
+/* ── LESSON 3 MODE TOGGLE BAR ── */
+#l3-mode-toggle { user-select: none; }
+#btn-envelope, #btn-tracking { white-space: nowrap; }
+body.ar #l3-mode-toggle { flex-direction: row-reverse; }
+body.ar #btn-envelope, body.ar #btn-tracking { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+
+/* ── LANGUAGE TOGGLE BUTTON ── */
+#lang-toggle {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 999;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  transition: background .15s, border-color .15s;
+  font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
+  color: var(--ink);
+  letter-spacing: .01em;
+}
+#lang-toggle:hover { background: var(--blue-bg); border-color: var(--blue-border); }
+
+/* ── ARABIC MODE ── */
+body.ar {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+body.ar .pnav-inner { flex-direction: row-reverse; }
+body.ar .pnav-btn { flex-direction: row-reverse; }
+body.ar .opener-meta { flex-direction: row-reverse; }
+body.ar .learn-box-title { flex-direction: row-reverse; justify-content: flex-end; }
+body.ar .learn-item { flex-direction: row-reverse; }
+body.ar .step { flex-direction: row-reverse; }
+body.ar .call { flex-direction: row-reverse; }
+body.ar .tip { flex-direction: row-reverse; }
+body.ar .mini-card-title { flex-direction: row-reverse; justify-content: flex-end; }
+body.ar .hero-pills { flex-direction: row-reverse; }
+body.ar .next-bar { flex-direction: row-reverse; }
+body.ar .flow { flex-direction: row-reverse; }
+body.ar .fa { transform: scaleX(-1); display: inline-block; }
+body.ar .rb-row { flex-direction: row-reverse; }
+body.ar .ss-cap { flex-direction: row-reverse; }
+body.ar .how { border-left: none; border-right: 3px solid var(--blue); border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+body.ar ul.plain li { padding: 5px 20px 5px 0; }
+body.ar ul.plain li::before { content: '←'; right: 0; left: auto; }
+body.ar .dt th { text-align: right; }
+body.ar .dt td { text-align: right; }
+body.ar h1, body.ar h2, body.ar h3 { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+body.ar .opener h1 { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+body.ar .next-btn { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+/* keep LTR islands */
+body.ar .keep-ltr { direction: ltr; unicode-bidi: embed; display: inline-block; }
+body.ar code.kp { direction: ltr; unicode-bidi: embed; display: inline-block; }
+body.ar kbd { direction: ltr; unicode-bidi: embed; display: inline-block; }
+/* stat-row stays centred */
+body.ar .stat { text-align: center; }
+/* vs comparison grid — swap column order visually */
+body.ar .vs { direction: rtl; }
+body.ar .vs-col:first-child { border-left: 1px solid var(--border); border-right: none; }
+body.ar .vs-col:last-child { border-left: none; }
+/* budget table RTL */
+body.ar .bt-h { direction: rtl; }
+body.ar .bt-c { direction: rtl; }
+body.ar .bn { text-align: left; }
 </style>
 </head>
 <body>
 
+<button id="lang-toggle" onclick="toggleLang()"><span id="lang-label">🌐 العربية</span></button>
 <!-- ═══ HERO ═══ -->
 <div class="hero">
   <div class="hi">
-    <div class="hero-kicker">📖 Beginner's Masterclass</div>
-    <h1>Learn <span>Actual Budget</h1>
-    <p class="hero-lead">A structured, beginner-friendly course designed for anyone new to budgeting apps to understand and control your spending.</p>
+    <div class="hero-kicker"><span data-ar="📖 دورة المبتدئين الشاملة">📖 Beginner's Masterclass</span></div>
+    <h1><span data-ar="تعلّم">Learn</span> <span>Actual Budget</span><br><span data-ar="من الصفر">From Zero</span></h1>
+    <p class="hero-lead"><span data-ar="دورة هادئة ومنظّمة لكل من لم يستخدم تطبيق ميزانية. ابدأ بسهولة مع Tracking mode، افهم إنفاقك، ثم انتقل إلى التحكم الكامل عندما تكون مستعداً.">A structured, beginner-friendly course designed for anyone new to budgeting apps to understand and control your spending</span></p>
     <div class="hero-pills">
-      <span class="hero-pill">9 lessons</span>
-      <span class="hero-pill">~45 min total</span>
-      <span class="hero-pill">Concept-based tutorial</span>
-      <span class="hero-pill">No prior knowledge needed</span>
+      <span class="hero-pill"><span data-ar="٩ دروس">9 lessons</span></span>
+      <span class="hero-pill"><span data-ar="٤٥ دقيقة تقريباً">~45 min total</span></span>
+      <span class="hero-pill"><span data-ar="تعليم يبدأ بالمفهوم">Concept-first teaching</span></span>
+      <span class="hero-pill"><span data-ar="لقطات حقيقية من التطبيق">Real app screenshots</span></span>
+      <span class="hero-pill"><span data-ar="لا يلزم أي خبرة مسبقة">No prior knowledge needed</span></span>
     </div>
   </div>
 </div>
@@ -218,14 +303,14 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 <!-- ═══ PROGRESS NAV ═══ -->
 <nav class="pnav">
   <div class="pnav-inner">
-    <button class="pnav-btn active" onclick="go(0)"><span class="pnav-step">01</span> Welcome</button>
-    <button class="pnav-btn" onclick="go(1)"><span class="pnav-step">02</span> Two Modes</button>
-    <button class="pnav-btn" onclick="go(2)"><span class="pnav-step">03</span> Your Budget</button>
-    <button class="pnav-btn" onclick="go(3)"><span class="pnav-step">04</span> Accounts</button>
-    <button class="pnav-btn" onclick="go(4)"><span class="pnav-step">05</span> Credit Cards</button>
-    <button class="pnav-btn" onclick="go(5)"><span class="pnav-step">06</span> Transactions</button>
-    <button class="pnav-btn" onclick="go(6)"><span class="pnav-step">07</span> Rules</button>
-    <button class="pnav-btn" onclick="go(7)"><span class="pnav-step">08</span> Reports</button>
+    <button class="pnav-btn active" onclick="go(0)"><span class="pnav-step"><span data-ar="٠١">01</span></span> <span data-ar="مرحباً">Welcome</span></button>
+    <button class="pnav-btn" onclick="go(1)"><span class="pnav-step"><span data-ar="٠٢">02</span></span> <span data-ar="نوعا الميزانية">Budget Modes</span></button>
+    <button class="pnav-btn" onclick="go(2)"><span class="pnav-step"><span data-ar="٠٣">03</span></span> <span data-ar="ميزانيتك">Your Budget</span></button>
+    <button class="pnav-btn" onclick="go(3)"><span class="pnav-step"><span data-ar="٠٤">04</span></span> <span data-ar="الحسابات">Accounts</span></button>
+    <button class="pnav-btn" onclick="go(4)"><span class="pnav-step"><span data-ar="٠٥">05</span></span> <span data-ar="بطاقات الائتمان">Credit Cards</span></button>
+    <button class="pnav-btn" onclick="go(5)"><span class="pnav-step"><span data-ar="٠٦">06</span></span> <span data-ar="المعاملات">Transactions</span></button>
+    <button class="pnav-btn" onclick="go(6)"><span class="pnav-step"><span data-ar="٠٧">07</span></span> <span data-ar="القواعد">Rules</span></button>
+    <button class="pnav-btn" onclick="go(7)"><span class="pnav-step"><span data-ar="٠٨">08</span></span> <span data-ar="التقارير">Reports</span></button>
     <button class="pnav-btn" onclick="go(8)"><span class="pnav-step">09</span> Tips & FAQ</button>
   </div>
 </nav>
@@ -237,51 +322,51 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 <div class="page visible" id="p0">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 01 of 09</span>
-      <span class="opener-time">⏱ 5 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠١ من ٠٩">Lesson 01 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٥ دقائق">⏱ 5 min</span></span>
     </div>
-    <h1>Welcome — Here's What You're Getting Into</h1>
-    <p class="opener-desc">Actual Budget is a private, open-source finance app that runs on your own server. This lesson explains what it is, why it's worth your time, and exactly how this course is structured so you always know where you are.</p>
+    <h1><span data-ar="مرحباً — إليك ما ستتعلمه">Welcome — Here's What You're Getting Into</span></h1>
+    <p class="opener-desc"><span data-ar="Actual Budget تطبيق مجاني ومفتوح المصدر يعمل على خادمك الخاص. هذا الدرس يشرح ما هو، ولماذا يستحق وقتك، وكيف ستسير في هذه الدورة.">Actual Budget is a private, open-source finance app that runs on your own server. This lesson explains what it is, why it's worth your time, and exactly how this course is structured so you always know where you are.</span></p>
   </div>
 
   <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
+    <div class="learn-box-title">🎯 <span data-ar="بنهاية هذا الدرس ستعرف…">By the end of this lesson you will…</span></div>
     <div class="learn-items">
-      <div class="learn-item">Know what Actual Budget is and how it differs from other apps</div>
-      <div class="learn-item">Understand the 4-step path to being fully set up</div>
-      <div class="learn-item">Know which budgeting mode you'll start with (and why)</div>
-      <div class="learn-item">Have a clear map of this entire course</div>
+      <div class="learn-item"><span data-ar="ما هو Actual Budget وكيف يختلف عن تطبيقات أخرى">Know what Actual Budget is and how it differs from other apps</span></div>
+      <div class="learn-item"><span data-ar="مسار الإعداد الكامل في ٤ خطوات">Understand the 4-step path to being fully set up</span></div>
+      <div class="learn-item"><span data-ar="أي وضع ميزانية ستبدأ به ولماذا">Know which budgeting mode you'll start with (and why)</span></div>
+      <div class="learn-item"><span data-ar="خريطة واضحة لهذه الدورة كاملةً">Have a clear map of this entire course</span></div>
     </div>
   </div>
 
   <!-- CONCEPT 1 -->
   <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>What makes Actual Budget different?</h2>
+    <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="ما الذي يميّز Actual عن غيره؟">What makes Actual Budget different?</span></h2>
     <p>Most budgeting apps are cloud services — your bank details and transaction history live on a company's servers. Actual is different: it's self-hosted, meaning your data lives on a server you control. No subscriptions, no company mining your financial life.</p>
-    <p style="margin-top:10px">Actual is free and open-source. You can run it on your own computer, on a home server, or on a cheap provider like <a href="https://www.pikapods.com" target="_blank">PikaPods</a> for a few dollars a month. The app itself is a web interface that works in any browser — including your phone.</p>
+    <p style="margin-top:10px">Actual is free and open-source. You can run it on your own computer, on a home server, or on a cheap provider like <a href="https://www.pikapods.com/pods?run=actual" target="_blank">PikaPods</a> for a few dollars a month. The app itself is a web interface that works in any browser — including your phone.</p>
     <div class="how">
-      <div class="how-title">In Actual this looks like…</div>
+      <div class="how-title"><span data-ar="كيف يبدو هذا في التطبيق">In Actual this looks like…</span></div>
       <p>When you first open Actual, you create a "budget file." Everything — your accounts, transactions, categories, and reports — lives in that file. It syncs across your devices via your server. If you ever want to stop using Actual, you export your data and you own it completely.</p>
     </div>
   </div>
 
   <!-- CONCEPT 2 -->
   <div class="concept">
-    <span class="concept-tag green">Concept</span>
-    <h2>What does a budgeting app actually do for you?</h2>
+    <span class="concept-tag green"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="ماذا يفعل تطبيق الميزانية لك فعلياً؟">What does a budgeting app actually do for you?</span></h2>
     <p>A budgeting app answers two questions that most people can't honestly answer without one: <em>"Where did my money go this month?"</em> and <em>"Do I actually have enough to pay this bill?"</em></p>
     <p>Actual does this by connecting all your accounts in one place, letting you categorize every transaction, and then showing you reports that reflect reality — not your best guesses.</p>
     <div class="how">
-      <div class="how-title">In Actual this looks like…</div>
+      <div class="how-title"><span data-ar="كيف يبدو هذا في التطبيق">In Actual this looks like…</span></div>
       <p>You set up your bank accounts once. Then on a regular basis (daily, weekly, or whenever) you import new transactions and assign each one to a category like "Groceries" or "Rent." The budget page shows how your actual spending compares to your plan.</p>
     </div>
   </div>
 
   <!-- YOUR PATH -->
   <div class="concept">
-    <span class="concept-tag amber">Your Path</span>
-    <h2>How this course is structured</h2>
+    <span class="concept-tag amber"><span data-ar="مسارك">Your Path</span></span>
+    <h2><span data-ar="هيكل هذه الدورة — ٩ دروس بتسلسل منطقي">How this course is structured</span></h2>
     <p>This is a <strong>9-lesson course</strong> designed to be read in order. Each lesson builds on the last. Here's the journey:</p>
 
     <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px">
@@ -304,15 +389,15 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
     </div>
 
     <div class="how" style="margin-top:18px">
-      <div class="how-title">Our recommendation</div>
+      <div class="how-title"><span data-ar="توصيتنا">Our recommendation</span></div>
       <p>Work through lessons 01–05 in one sitting (about 20 minutes). That's enough to have Actual fully set up and working. Return to lessons 06–09 over the following week as you actually use the app and have real questions.</p>
     </div>
   </div>
 
   <!-- SETTINGS QUICK LOOK -->
   <div class="concept">
-    <span class="concept-tag blue">First look</span>
-    <h2>A quick tour of Settings</h2>
+    <span class="concept-tag blue"><span data-ar="نظرة سريعة">First look</span></span>
+    <h2><span data-ar="نظرة سريعة على Settings">A quick tour of Settings</span></h2>
     <p>Before anything else, it's worth knowing where Settings lives. You'll visit it shortly to switch budgeting modes and configure date/number formats.</p>
     <div class="ss">
       <img src="https://actualbudget.org/assets/images/actual-settings-799a4312b2c1d1b2bfc1fbcec624b6ac.webp" alt="Actual Budget Settings page" loading="lazy">
@@ -326,298 +411,334 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 
   <div class="next-bar">
     <div class="next-bar-info">
-      <p>Up next — Lesson 02</p>
-      <strong>Two Budgeting Modes: Which One to Start With</strong>
+      <p><span data-ar="الدرس التالي — ٠٢">Up next — Lesson 02</span></p>
+      <strong><span data-ar="نوعا الميزانية: أيهما تختار؟">Two Budgeting Modes: Which One to Start With</span></strong>
     </div>
-    <button class="next-btn" onclick="go(1)">Next Lesson →</button>
+    <button class="next-btn" data-ar-text="← الدرس التالي" onclick="go(1)">Next Lesson →</button>
   </div>
 </div>
 
 
 <!-- ╔══════════════════════════════════════════════════════════╗ -->
-<!-- ║  02  TWO MODES                                          ║ -->
+<!-- ║  02  TWO MODES — CHOOSE YOURS                          ║ -->
 <!-- ╚══════════════════════════════════════════════════════════╝ -->
 <div class="page" id="p1">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 02 of 09</span>
-      <span class="opener-time">⏱ 7 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠٢ من ٠٩">Lesson 02 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٧ دقائق">⏱ 7 min</span></span>
     </div>
-    <h1>Two Budgeting Modes — Understanding the Difference</h1>
-    <p class="opener-desc">This is the most important lesson in the course. Actual offers two completely different philosophies for budgeting. Understanding both — before you touch any settings — will save you confusion for months.</p>
+    <h1><span data-ar="نوعا الميزانية — اختر أسلوبك">Two Budgeting Modes — Choose Yours</span></h1>
+    <p class="opener-desc"><span data-ar="Actual يقدّم طريقتين مختلفتين جذرياً للميزانية. اقرأ كلتيهما، وفي نهاية هذا الدرس اختر الأسلوب الذي يناسبك — سيتكيّف الدرس التالي تلقائياً ليشرح الأسلوب الذي اخترته.">Actual offers two completely different budgeting philosophies. Read about both, then choose the one that fits you — Lesson 03 will automatically adapt to show you exactly how your chosen method works.</span></p>
   </div>
 
   <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
+    <div class="learn-box-title">🎯 <span data-ar="بنهاية هذا الدرس ستعرف…">By the end of this lesson you will…</span></div>
     <div class="learn-items">
-      <div class="learn-item">Understand what Tracking Budget mode is and how it works</div>
-      <div class="learn-item">Understand what Envelope (zero-sum) mode is and how it works</div>
-      <div class="learn-item">Know exactly when to use each mode</div>
-      <div class="learn-item">Know how to switch between modes (it's easy and reversible)</div>
+      <div class="learn-item"><span data-ar="فهم ما هو Tracking Budget mode وكيف يعمل">Understand what Tracking Budget mode is and how it works</span></div>
+      <div class="learn-item"><span data-ar="فهم ما هو Envelope (zero-sum) mode وكيف يعمل">Understand what Envelope (zero-sum) mode is and how it works</span></div>
+      <div class="learn-item"><span data-ar="اختيار الأسلوب الذي يناسب وضعك الآن">Choose the mode that suits your situation right now</span></div>
+      <div class="learn-item"><span data-ar="كيف تُفعّل الأسلوب الذي اخترته في الإعدادات">Know how to activate your chosen mode in Settings</span></div>
     </div>
   </div>
 
-  <!-- CONCEPT: TRACKING -->
+  <!-- TWO CARDS SIDE BY SIDE -->
+  <div id="mode-cards-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px">
+    <!-- TRACKING CARD -->
+    <div id="mode-card-tracking" class="mode-select-card" onclick="selectMode('tracking')" style="background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:22px;cursor:pointer;transition:border-color .2s,box-shadow .2s">
+      <div style="font-size:28px;margin-bottom:10px">📊</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Tracking Budget</div>
+      <div style="font-size:12px;font-weight:600;color:var(--amber);background:var(--amber-bg);display:inline-block;padding:2px 9px;border-radius:20px;margin-bottom:12px"><span data-ar="مريح، أقل ضغطاً">Relaxed, lower pressure</span></div>
+      <p style="font-size:13px;color:var(--ink2);line-height:1.65"><span data-ar="ضع أهدافاً شهرية لكل فئة وتابع إنفاقك الفعلي مقابلها. إذا تجاوزت فئة ما، فقط ارفع الرقم. لا يلزمك توزيع كل ريال تملكه.">Set monthly targets per category and track how your real spending compares. If you overspend a category, just increase the number. No need to assign every dollar you own.</span></p>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:5px">
+        <div style="font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:6px">✓ <span data-ar="مثالي للمبتدئين وفهم نمط الإنفاق">Great for beginners learning their spending patterns</span></div>
+        <div style="font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:6px">✓ <span data-ar="الأرصدة لا تنتقل تلقائياً للشهر التالي">Balances don't roll over month to month</span></div>
+        <div style="font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:6px">✓ <span data-ar="جلسة أسبوعية خفيفة تكفي">A light weekly check-in is all you need</span></div>
+      </div>
+      <div id="tracking-selected-badge" style="display:none;margin-top:14px;background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;font-weight:700;color:var(--amber);text-align:center">
+        ✓ <span data-ar="اخترت هذا الأسلوب">Your chosen mode</span>
+      </div>
+    </div>
+
+    <!-- ENVELOPE CARD -->
+    <div id="mode-card-envelope" class="mode-select-card" onclick="selectMode('envelope')" style="background:var(--surface);border:2px solid var(--green);border-radius:var(--radius);padding:22px;cursor:pointer;transition:border-color .2s,box-shadow .2s;box-shadow:0 0 0 3px rgba(22,163,74,.12)">
+      <div style="font-size:28px;margin-bottom:10px">📦</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">Envelope Budget (Zero-Sum)</div>
+      <div style="font-size:12px;font-weight:600;color:var(--green);background:var(--green-bg);display:inline-block;padding:2px 9px;border-radius:20px;margin-bottom:12px"><span data-ar="تحكم كامل، نتائج أقوى">Full control, stronger results</span></div>
+      <p style="font-size:13px;color:var(--ink2);line-height:1.65"><span data-ar="كل ريال تملكه يجب أن يُخصَّص لفئة ما. إذا تجاوزت فئة، يجب نقل مال من فئة أخرى. كل إنفاق له مقايضة واعية.">Every dollar you own must be assigned to a category. If you overspend, you must move money from another category. Every spending decision is a conscious trade-off.</span></p>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:5px">
+        <div style="font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:6px">✓ <span data-ar="التحكم الكامل في الإنفاق">Maximum control over your spending</span></div>
+        <div style="font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:6px">✓ <span data-ar="الفائض ينتقل تلقائياً للشهر التالي ويتراكم">Surplus rolls forward and builds up over time</span></div>
+        <div style="font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:6px">✓ <span data-ar="الافتراضي في Actual — لا تغيير في الإعدادات">Default in Actual — no settings change needed</span></div>
+      </div>
+      <div id="envelope-selected-badge" style="display:block;margin-top:14px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;font-weight:700;color:var(--green);text-align:center">
+        ✓ <span data-ar="اخترت هذا الأسلوب — الافتراضي الموصى به">Your chosen mode — recommended default</span>
+      </div>
+    </div>
+  </div>
+  <!-- COMPARISON TABLE -->
   <div class="concept">
-    <span class="concept-tag amber">Mode 1 — Recommended Starting Point</span>
-    <h2>Tracking Budget: "I want to see where my money goes"</h2>
-    <p>Tracking Budget works like a traditional spreadsheet budget. You set monthly <strong>targets</strong> for each category (Groceries: $400, Rent: $1,200…) and then track how your real spending compares. That's it.</p>
-    <p>You're forecasting what you <em>expect</em> to spend. You don't need to account for every dollar you own. At month-end, the budget doesn't carry over — you start fresh. If you overspend a category, you simply increase the budget number to acknowledge reality.</p>
-
-    <div class="how">
-      <div class="how-title">In Actual this looks like…</div>
-      <p>The budget page shows three columns per category: <strong>Budgeted</strong> (your target), <strong>Spent</strong> (what actually happened), and <strong>Balance</strong> (the difference). A green balance means under budget. Red means over. No money moves — you just adjust the number.</p>
-    </div>
-
-    <div class="ss" style="margin-top:14px">
-      <img src="https://actualbudget.org/assets/images/tracking-budget-1-8495330d48db0f55969e32adfd8da233.webp" alt="Tracking Budget view" loading="lazy">
-      <div class="ss-cap"><span class="ss-cap-icon">📍</span>The Tracking Budget page — three columns per category. The summary at the top shows Projected Savings = budgeted income minus budgeted expenses.</div>
-    </div>
-
-    <div class="call ci" style="margin-top:4px">
-      <span class="call-ic">👍</span>
-      <div><strong>Why start here?</strong> Tracking mode has zero-pressure entry. You don't need to perfectly plan your finances from day one. Just set rough targets, import transactions, and observe. After 2–3 months you'll have real data about your habits — and that data is gold.</div>
-    </div>
-  </div>
-
-  <!-- CONCEPT: ENVELOPE -->
-  <div class="concept">
-    <span class="concept-tag green">Mode 2 — For When You're Ready</span>
-    <h2>Envelope Budget: "I want to control every dollar"</h2>
-    <p>Envelope budgeting (also called zero-sum budgeting) is based on a single rule: <strong>every dollar you currently own must be assigned to a category</strong>. All of it. If you have $3,000 across your accounts, you allocate all $3,000 to categories until the "To Budget" counter reaches exactly zero.</p>
-    <p>The power comes from one constraint: when you overspend a category, you <strong>cannot simply increase the number</strong>. You must <strong>move money from another category</strong> to cover it. Want to spend an extra $50 on restaurants? You have to take $50 away from something else — entertainment, clothing, savings. Every spending decision has a visible trade-off.</p>
-
-    <div class="how">
-      <div class="how-title">In Actual this looks like…</div>
-      <p>The budget page shows a "To Budget" number at the top. You click each category and fill in amounts until To Budget = $0. If Eating Out goes over, you click that category's balance and choose "Transfer from another category." Leftover money in categories rolls forward to next month automatically — building up a cushion over time.</p>
-    </div>
-
-    <div class="call cw" style="margin-top:14px">
-      <span class="call-ic">⚠️</span>
-      <div><strong>Why not start here?</strong> Envelope mode is powerful but demands more from you. You need to check in regularly, resolve overspending actively, and think carefully about every allocation. It's the right tool once you understand your spending — but it can feel overwhelming on day one.</div>
+    <span class="concept-tag blue"><span data-ar="مقارنة">Side by Side</span></span>
+    <h2><span data-ar="المقارنة الكاملة">Full Comparison</span></h2>
+    <div class="vs">
+      <div class="vs-col">
+        <div class="vs-title" style="color:var(--amber)">📊 Tracking Budget</div>
+        <div class="vs-item"><span data-ar="ضع أهدافاً تقديرية لكل فئة">Set estimated targets per category</span></div>
+        <div class="vs-item"><span data-ar="لا داعي لتوزيع كل أموالك">No need to assign every dollar you own</span></div>
+        <div class="vs-item"><span data-ar="تجاوزت فئة؟ فقط ارفع الرقم">Overspend → just increase the budget number</span></div>
+        <div class="vs-item"><span data-ar="الأرصدة لا تنتقل تلقائياً للشهر التالي">Balances do <strong>not</strong> roll over month to month</span></div>
+        <div class="vs-item"><span data-ar="الوفورات المتوقعة = دخل مُخصَّص − مصاريف مُخصَّصة">"Projected Savings" = budgeted income − budgeted expenses</span></div>
+        <div class="vs-item"><span data-ar="مثالي لفهم نمط إنفاقك أولاً">Ideal for learning your spending patterns first</span></div>
+      </div>
+      <div class="vs-col">
+        <div class="vs-title" style="color:var(--green)">📦 Envelope Budget</div>
+        <div class="vs-item"><span data-ar="كل ريال تملكه يجب أن يُخصَّص">Every dollar you own must be assigned</span></div>
+        <div class="vs-item"><span data-ar="«المتاح للتوزيع» يجب أن يصل إلى صفر بالضبط">"To Budget" must reach exactly $0</span></div>
+        <div class="vs-item"><span data-ar="تجاوزت فئة؟ يجب نقل مال من فئة أخرى">Overspend → <strong>must move money</strong> from another category</span></div>
+        <div class="vs-item"><span data-ar="الفائض ينتقل تلقائياً للشهر التالي ويتراكم">Surplus rolls forward to next month automatically</span></div>
+        <div class="vs-item"><span data-ar="كل قرار إنفاق له مقايضة واعية ومرئية">Makes every overspend a visible, conscious trade-off</span></div>
+        <div class="vs-item"><span data-ar="تحكم مالي أقوى — الأنسب على المدى الطويل">Stronger financial control over the long term</span></div>
+      </div>
     </div>
   </div>
 
-  <!-- SIDE BY SIDE -->
-  <div class="vs">
-    <div class="vs-col">
-      <div class="vs-title" style="color:var(--amber)">📊 Tracking Mode</div>
-      <div class="vs-item">Set targets per category (estimates)</div>
-      <div class="vs-item">Don't need to assign every dollar you own</div>
-      <div class="vs-item">Overspend → just increase the budget number</div>
-      <div class="vs-item">Balances do <strong>not</strong> roll over month to month</div>
-      <div class="vs-item">Great for learning your spending patterns</div>
-      <div class="vs-item" style="font-weight:600;color:var(--amber)">✓ Recommended for beginners</div>
-    </div>
-    <div class="vs-col">
-      <div class="vs-title" style="color:var(--green)">📦 Envelope Mode</div>
-      <div class="vs-item">Every dollar you own must be assigned</div>
-      <div class="vs-item">"To Budget" must reach exactly $0</div>
-      <div class="vs-item">Overspend → <strong>must move money</strong> from another category</div>
-      <div class="vs-item">Surplus rolls forward to next month automatically</div>
-      <div class="vs-item">Makes overspending a visible, conscious trade-off</div>
-      <div class="vs-item" style="font-weight:600;color:var(--green)">✓ Switch to this when you're ready</div>
-    </div>
+  <!-- YOUR CHOICE CALLOUT (dynamic) -->
+  <div id="mode-choice-callout" class="call cs" style="margin-top:0">
+    <span class="call-ic">📦</span>
+    <div id="mode-choice-text"><strong>You've chosen Envelope Budget (default).</strong> Actual starts in this mode by default — no settings change needed. Head to Lesson 03 to see how it works in practice.</div>
   </div>
 
-  <!-- HOW TO SWITCH -->
-  <div class="concept">
-    <span class="concept-tag blue">Action</span>
-    <h2>How to enable Tracking Budget mode</h2>
-    <p>Actual starts you in Envelope mode by default. Since we're starting with Tracking mode, you'll need to switch. The good news: switching is instant and reversible. You can go back to Envelope mode at any time without losing any data.</p>
-    <div class="ss" style="margin-top:14px">
-      <img src="https://actualbudget.org/assets/images/tracking-budget-7-ae42ea7504a199ec97316732c73a1a10.webp" alt="Switch to tracking budgeting" loading="lazy">
-      <div class="ss-cap"><span class="ss-cap-icon">📍</span>Settings → click "Switch to tracking budgeting." Your accounts, transactions, and categories are all preserved when switching modes.</div>
+  <!-- HOW TO SWITCH (shown only for Tracking) -->
+  <div id="tracking-switch-section" style="display:none">
+    <div class="concept">
+      <span class="concept-tag blue"><span data-ar="إجراء">Action Required</span></span>
+      <h2><span data-ar="كيف تُفعّل Tracking Budget mode في التطبيق">How to enable Tracking Budget mode in the app</span></h2>
+      <p><span data-ar="Actual يبدأ بـ Envelope mode افتراضياً. بما أنك اخترت Tracking mode، ستحتاج لتغيير هذا في الإعدادات. البشرى: التبديل فوري وقابل للعكس في أي وقت دون فقدان أي بيانات.">Actual starts in Envelope mode by default. Since you've chosen Tracking mode, you need to change this in Settings. The good news: switching is instant and reversible — you can go back to Envelope mode at any time without losing any data.</span></p>
+      <div class="ss" style="margin-top:14px">
+        <img src="https://actualbudget.org/assets/images/tracking-budget-7-ae42ea7504a199ec97316732c73a1a10.webp" alt="Switch to tracking budgeting" loading="lazy">
+        <div class="ss-cap"><span class="ss-cap-icon">📍</span><span data-ar="الإعدادات ← انقر على «التبديل إلى Tracking mode». حساباتك ومعاملاتك وفئاتك جميعها تبقى كما هي.">Settings → click "Switch to tracking budgeting." Your accounts, transactions, and categories are all preserved.</span></div>
+      </div>
+      <div class="steps" style="margin-top:4px">
+        <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t"><span data-ar="افتح الإعدادات">Open Settings</span></div><span data-ar="انقر على أيقونة الترس، أو اذهب إلى المزيد ← الإعدادات.">Click the gear icon in the sidebar, or go to More → Settings.</span></div></div>
+        <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t"><span data-ar="انقر على «التبديل إلى Tracking mode»">Click "Switch to tracking budgeting"</span></div><span data-ar="ستجده في قسم الميزانية بالإعدادات.">It's near the top of the Budget section in Settings.</span></div></div>
+        <div class="step"><div class="sn g">✓</div><div class="step-b"><div class="step-t"><span data-ar="تم — تتحدث صفحة الميزانية فوراً">Done — the budget view updates immediately</span></div><span data-ar="تتغير الأعمدة من «المتاح/المُخصَّص» إلى «المُخصَّص/المُنفَق/الرصيد».">The columns change from "To Budget / Available" to "Budgeted / Spent / Balance."</span></div></div>
+      </div>
     </div>
-    <div class="steps" style="margin-top:4px">
-      <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t">Open Settings</div>Click the gear icon in the sidebar, or go to More → Settings.</div></div>
-      <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t">Click "Switch to tracking budgeting"</div>It's near the top of the Budget section in Settings.</div></div>
-      <div class="step"><div class="sn g">✓</div><div class="step-b"><div class="step-t">Done — the budget view updates immediately</div>The columns change from "To Budget / Available" to "Budgeted / Spent / Balance."</div></div>
-    </div>
-  </div>
-
-  <!-- WHEN TO SWITCH -->
-  <div class="call cs">
-    <span class="call-ic">📅</span>
-    <div><strong>When should you switch to Envelope mode?</strong> After 2–3 months in Tracking mode, you'll have real data on where your money goes. At that point, switching to Envelope gives you genuine financial control — the data will tell you what limits to set. We'll revisit this decision in Lesson 09.</div>
   </div>
 
   <div class="next-bar">
-    <div class="next-bar-info"><p>Up next — Lesson 03</p><strong>Building Your Tracking Budget</strong></div>
-    <button class="next-btn" onclick="go(2)">Next Lesson →</button>
+    <div class="next-bar-info"><p><span data-ar="الدرس التالي — ٠٣">Up next — Lesson 03</span></p><strong id="l3-next-title"><span data-ar="بناء ميزانيتك — Envelope Budget">Building Your Budget — Envelope Budget</span></strong></div>
+    <button class="next-btn" data-ar-text="← الدرس التالي" onclick="go(2)"><span data-ar="الدرس التالي →">Next Lesson →</span></button>
   </div>
 </div>
 
 
 <!-- ╔══════════════════════════════════════════════════════════╗ -->
-<!-- ║  03  YOUR BUDGET                                        ║ -->
+<!-- ║  03  YOUR BUDGET — DUAL MODE                            ║ -->
 <!-- ╚══════════════════════════════════════════════════════════╝ -->
 <div class="page" id="p2">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 03 of 09</span>
-      <span class="opener-time">⏱ 8 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠٣ من ٠٩">Lesson 03 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٨ دقائق">⏱ 8 min</span></span>
     </div>
-    <h1>Building Your Tracking Budget</h1>
-    <p class="opener-desc">This is where you actually create your budget. We'll cover categories, setting targets, reading the monthly summary, and the simple monthly habit that makes budgeting work.</p>
+    <h1 id="l3-title"><span data-ar="بناء ميزانيتك — Envelope Budget">Building Your Budget — Envelope Budget</span></h1>
+    <p class="opener-desc"><span data-ar="هنا تُنشئ ميزانيتك فعلياً. استخدم زر التبديل أدناه في أي وقت للتنقل بين شرح الأسلوبين.">This is where you actually create your budget. Use the toggle below at any time to switch between explanations for each mode.</span></p>
   </div>
 
-  <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
-    <div class="learn-items">
-      <div class="learn-item">Understand what categories are and how to structure them</div>
-      <div class="learn-item">Know how to set income and expense targets for the month</div>
-      <div class="learn-item">Be able to read the monthly summary header</div>
-      <div class="learn-item">Know exactly what to do when a category goes red</div>
-    </div>
+  <!-- ── MODE TOGGLE BAR ── -->
+  <div id="l3-mode-toggle" style="display:flex;align-items:center;gap:0;background:var(--bg);border:1.5px solid var(--border);border-radius:999px;padding:4px;margin-bottom:28px;width:fit-content">
+    <button id="btn-envelope" onclick="setL3Mode('envelope')" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;border:none;cursor:pointer;padding:8px 20px;border-radius:999px;background:var(--green);color:#fff;transition:all .18s">📦 Envelope Budget</button>
+    <button id="btn-tracking" onclick="setL3Mode('tracking')" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;border:none;cursor:pointer;padding:8px 20px;border-radius:999px;background:transparent;color:var(--ink3);transition:all .18s">📊 Tracking Budget</button>
   </div>
 
-  <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>Categories: the buckets your money flows into</h2>
-    <p>Every transaction in Actual must be assigned to a category. Categories are how Actual knows what your money was spent on — without them, you have a list of transactions with no meaning. The categories you create become the labels on all your reports and budget charts.</p>
-    <p>Actual lets you <strong>group categories</strong> — so "Groceries" and "Eating Out" can both sit inside a "Food" group. This keeps the budget page readable and lets you see group-level totals at a glance.</p>
-    <div class="how">
-      <div class="how-title">In Actual this looks like…</div>
-      <p>On the Budget page, the left column is a list of your category groups, each expandable to show the categories inside. You set a "Budgeted" amount next to each category. As transactions come in and are assigned to categories, the "Spent" and "Balance" columns update automatically.</p>
-    </div>
-  </div>
+  <!-- ░░░░░░░ ENVELOPE CONTENT ░░░░░░░ -->
+  <div id="l3-envelope">
 
-  <div class="concept">
-    <span class="concept-tag amber">Practical</span>
-    <h2>Designing your categories — a starting framework</h2>
-    <p>The right categories are personal, but here's a framework that works for most people. Start with these groups and refine over time. <strong>Fewer categories is better to start</strong> — you can always split later.</p>
-
-    <div class="g2" style="margin-top:18px">
-      <div class="mini-card">
-        <div class="mini-card-title">🔴 Fixed Essentials</div>
-        <p style="font-size:13px;color:var(--ink2)">Bills that are the same (or similar) every month and non-negotiable.</p>
-        <ul class="plain" style="margin-top:10px;font-size:13px">
-          <li>Rent or Mortgage</li>
-          <li>Insurance (health, car, home)</li>
-          <li>Internet &amp; Phone</li>
-          <li>Electricity / Gas / Water</li>
-        </ul>
-      </div>
-      <div class="mini-card">
-        <div class="mini-card-title">🟡 Variable Daily Spending</div>
-        <p style="font-size:13px;color:var(--ink2)">Spending that fluctuates but happens every month.</p>
-        <ul class="plain" style="margin-top:10px;font-size:13px">
-          <li>Groceries</li>
-          <li>Eating Out / Restaurants</li>
-          <li>Fuel / Transport</li>
-          <li>Personal Care &amp; Clothing</li>
-        </ul>
-      </div>
-      <div class="mini-card">
-        <div class="mini-card-title">🔵 Subscriptions</div>
-        <p style="font-size:13px;color:var(--ink2)">Recurring charges you may not notice day-to-day.</p>
-        <ul class="plain" style="margin-top:10px;font-size:13px">
-          <li>Streaming (Netflix, Spotify)</li>
-          <li>Software / Apps</li>
-          <li>Gym / Memberships</li>
-        </ul>
-      </div>
-      <div class="mini-card">
-        <div class="mini-card-title">🟢 Savings Goals</div>
-        <p style="font-size:13px;color:var(--ink2)">Money you're deliberately setting aside.</p>
-        <ul class="plain" style="margin-top:10px;font-size:13px">
-          <li>Emergency Fund</li>
-          <li>Vacation</li>
-          <li>Car / Home Repair Fund</li>
-        </ul>
+    <!-- CATEGORIES (shared concept, shown in envelope first) -->
+    <div class="concept">
+      <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+      <h2><span data-ar="Categories: الأدراج التي يتدفق إليها مالك">Categories: the buckets your money flows into</span></h2>
+      <p><span data-ar="كل معاملة في Actual يجب أن تُصنَّف تحت فئة. الفئات هي الطريقة التي يعرف بها التطبيق على ماذا أُنفق مالك — بدونها لديك قائمة معاملات بلا معنى. هذا ينطبق على كلا الأسلوبين.">Every transaction in Actual must be assigned to a category. Categories are how Actual knows what your money was spent on — without them, you have a list of transactions with no meaning. This applies to both modes.</span></p>
+      <p><span data-ar="يتيح لك Actual تجميع الفئات — فـ«البقالة» و«المطاعم» يمكن أن يقعا داخل مجموعة «الطعام». هذا يُبقي صفحة الميزانية منظمة ويُتيح رؤية إجمالي كل مجموعة دفعة واحدة.">Actual lets you <strong>group categories</strong> — "Groceries" and "Eating Out" can both sit inside a "Food" group. This keeps the budget page readable and lets you see group-level totals at a glance.</span></p>
+      <div class="how">
+        <div class="how-title"><span data-ar="كيف يبدو هذا في التطبيق">In Actual this looks like…</span></div>
+        <p><span data-ar="في صفحة الميزانية، العمود الأيسر قائمة بمجموعات فئاتك، قابلة للطي. تضع مبلغاً «مُخصَّصاً» بجانب كل فئة. عند استيراد المعاملات وتصنيفها تتحدث الأعمدة تلقائياً.">On the Budget page, the left column is a list of your category groups, each expandable. You set a "Budgeted" amount next to each category. As transactions come in and are categorized, the columns update automatically.</span></p>
       </div>
     </div>
-    <div class="tip"><span class="tip-ic">💡</span><div>Don't spend more than 10 minutes on categories before you have real transaction data. Set up something reasonable now, then refine it after your first import. The app makes it easy to rename, merge, and split categories later.</div></div>
-  </div>
 
-  <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>Setting targets: your monthly forecast</h2>
-    <p>For each income category (like "Salary"), enter what you expect to receive this month. For each expense category, enter your spending target. These are <em>forecasts</em>, not contracts. Being wrong is fine — the goal is to get a baseline you can refine.</p>
-    <p><strong>How to find good starting numbers:</strong> Open 2–3 months of bank statements and estimate your average per category. If you're unsure, budget generously. It's better to see a small green surplus than a misleading red that makes you think you've failed.</p>
+    <!-- ENVELOPE: ASSIGNING EVERY DOLLAR -->
+    <div class="concept">
+      <span class="concept-tag green"><span data-ar="جوهر Envelope mode">The core of Envelope Budget</span></span>
+      <h2><span data-ar="«To Budget»: وزّع كل ريال حتى يصل إلى الصفر">"To Budget": assign every dollar until it reaches zero</span></h2>
+      <p><span data-ar="في صفحة Envelope Budget يظهر رقم «To Budget» في الأعلى — هذه أموالك غير الموزَّعة. هدفك هو توصيل هذا الرقم إلى صفر بالضبط بتوزيع كل أموالك على الفئات. لا يمكنك توزيع أكثر مما تملك.">In the Envelope Budget page, a <strong>"To Budget"</strong> number appears at the top — this is your unassigned money. Your goal is to get it to exactly zero by filling in amounts across all categories. You cannot budget more money than you actually have.</span></p>
+      <div class="how">
+        <div class="how-title"><span data-ar="خطوة بخطوة">Step by step</span></div>
+        <p><span data-ar="انقر على عمود «المُخصَّص» بجانب كل فئة وأدخل المبلغ. ابدأ بالأهم (الإيجار، الطعام)، ثم تابع حتى يصبح «To Budget» صفراً. عندما يصل راتبك أو أي دخل، يُضاف مباشرة لـ«To Budget» وتوزّعه مجدداً.">Click the <strong>Budgeted</strong> column next to each category and enter an amount. Start with the most important (rent, food), then continue until "To Budget" = $0. When income arrives, it's added to "To Budget" for you to distribute.</span></p>
+      </div>
 
-    <div class="bt">
-      <div class="bt-bar"><div class="bt-dot" style="background:#ff5f57"></div><div class="bt-dot" style="background:#febc2e"></div><div class="bt-dot" style="background:#28c840"></div><span class="bt-lbl">Budget — March 2025 (Tracking Mode)</span></div>
-      <div style="padding:4px 0">
-        <div class="bt-row bt-h"><span>Category</span><span class="bn">Budgeted</span><span class="bn">Spent</span><span class="bn">Balance</span></div>
-        <div class="bt-row bt-g"><span>🏠 Housing</span></div>
-        <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)">Rent</span><span class="bn">$1,500</span><span class="bn">$1,500</span><span class="bn">$0</span></div>
-        <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)">Electricity</span><span class="bn">$120</span><span class="bn">$98</span><span class="bn p">$22</span></div>
-        <div class="bt-row bt-g"><span>🍽️ Food</span></div>
-        <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)">Groceries</span><span class="bn">$500</span><span class="bn">$412</span><span class="bn p">$88</span></div>
-        <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)">Eating Out</span><span class="bn">$200</span><span class="bn">$243</span><span class="bn n">−$43</span></div>
-        <div class="bt-row bt-g"><span>🟢 Savings</span></div>
-        <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)">Emergency Fund</span><span class="bn">$300</span><span class="bn">$0</span><span class="bn p">$300</span></div>
+      <!-- ENVELOPE MOCK TABLE -->
+      <div class="bt" style="margin-top:16px">
+        <div class="bt-bar"><div class="bt-dot" style="background:#ff5f57"></div><div class="bt-dot" style="background:#febc2e"></div><div class="bt-dot" style="background:#28c840"></div><span class="bt-lbl">Budget — March 2025 (Envelope Mode) &nbsp;·&nbsp; To Budget: $0 ✓</span></div>
+        <div style="padding:4px 0">
+          <div class="bt-row bt-h"><span><span data-ar="الفئة">Category</span></span><span class="bn"><span data-ar="المُخصَّص">Budgeted</span></span><span class="bn"><span data-ar="المُنفَق">Spent</span></span><span class="bn"><span data-ar="الرصيد">Balance</span></span></div>
+          <div class="bt-row bt-g"><span>🏠 <span data-ar="السكن">Housing</span></span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="الإيجار">Rent</span></span><span class="bn">$1,500</span><span class="bn">$1,500</span><span class="bn">$0</span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="الكهرباء">Electricity</span></span><span class="bn">$120</span><span class="bn">$98</span><span class="bn p">$22</span></div>
+          <div class="bt-row bt-g"><span>🍽️ <span data-ar="الطعام">Food</span></span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="البقالة">Groceries</span></span><span class="bn">$500</span><span class="bn">$412</span><span class="bn p">$88</span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="المطاعم">Eating Out</span></span><span class="bn">$200</span><span class="bn">$243</span><span class="bn n">−$43 ⚠</span></div>
+          <div class="bt-row bt-g"><span>🟢 <span data-ar="الادخار">Savings</span></span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="صندوق الطوارئ">Emergency Fund</span></span><span class="bn">$300</span><span class="bn">$0</span><span class="bn p">$300</span></div>
+        </div>
       </div>
     </div>
-    <p style="font-size:13px;color:var(--ink3);margin-top:8px">The <span style="color:var(--red);font-weight:600">red −$43</span> on Eating Out just means you spent $43 more than budgeted. In Tracking mode, this is just information — not a crisis. Read on to see how to handle it.</p>
-  </div>
 
-  <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>The monthly summary: your budget's scoreboard</h2>
-    <p>At the top of the budget page in Tracking mode sits a summary bar. It compares your budgeted amounts (the plan) against your actual amounts (reality).</p>
-    <div class="stat-row">
-      <div class="stat" style="background:var(--green-bg);border:1px solid var(--green-border)">
-        <div class="stat-label" style="color:var(--green)">Budgeted Income</div>
-        <div class="stat-val" style="color:var(--green)">$4,200</div>
-        <div class="stat-desc" style="color:#166534">What you planned to receive vs what actually arrived</div>
+    <!-- ENVELOPE: OVERSPENDING -->
+    <div class="concept">
+      <span class="concept-tag amber"><span data-ar="ماذا تفعل عند التجاوز">When a category goes red in Envelope mode</span></span>
+      <h2><span data-ar="تجاوزت فئة؟ يجب نقل مال من مكان آخر">Overspent a category? You must move money from elsewhere</span></h2>
+      <p><span data-ar="هذا هو قلب Envelope mode وقوّته. لا يمكنك ببساطة رفع رقم الميزانية. يجب عليك نقل مال من فئة أخرى لتغطية التجاوز. هذا يُحوّل كل إنفاق زائد إلى قرار واعي.">This is the heart and power of Envelope mode. You <strong>cannot</strong> simply increase the budget number. You must move money from another category to cover the overspend. This turns every overspend into a deliberate decision.</span></p>
+      <div class="flow" style="margin-top:16px">
+        <div class="fn" style="background:var(--red-bg);border-color:var(--red-border)"><span data-ar="المطاعم: مُخصَّص $200">Eating Out budgeted: $200</span><br><small><span data-ar="المُنفَق: $243 | الرصيد:">Spent: $243 | Balance:</span> <strong style="color:var(--red)">−$43</strong></small></div>
+        <span class="fa">→</span>
+        <div class="fn"><span data-ar="انقر على الرصيد الأحمر">Click the red balance</span><br><small><span data-ar="اختر «نقل من فئة أخرى»">"Transfer from category"</span></small></div>
+        <span class="fa">→</span>
+        <div class="fn" style="background:var(--amber-bg);border-color:var(--amber-border)"><span data-ar="خذ $43 من «الترفيه»">Take $43 from Entertainment</span><br><small><span data-ar="أو الملابس أو الادخار"><em>or Clothing, or Savings</em></span></small></div>
+        <span class="fa">→</span>
+        <div class="fn" style="background:var(--green-bg);border-color:var(--green-border)"><span data-ar="المطاعم: $0 ✓">Eating Out: $0 ✓</span><br><small style="color:var(--green)"><span data-ar="قرار واعي تم اتخاذه">Conscious trade-off made</span></small></div>
       </div>
-      <div class="stat" style="background:var(--red-bg);border:1px solid var(--red-border)">
-        <div class="stat-label" style="color:var(--red)">Budgeted Expenses</div>
-        <div class="stat-val" style="color:var(--red)">$3,650</div>
-        <div class="stat-desc" style="color:#7f1d1d">What you planned to spend vs what you actually spent</div>
-      </div>
-      <div class="stat" style="background:var(--blue-bg);border:1px solid var(--blue-border)">
-        <div class="stat-label" style="color:var(--blue)">Projected Savings</div>
-        <div class="stat-val" style="color:var(--blue)">$550</div>
-        <div class="stat-desc" style="color:#1e3a8a">Income − Expenses. Your planned surplus this month.</div>
+      <div class="call ci">
+        <span class="call-ic">💡</span>
+        <div><strong><span data-ar="لماذا هذا قوي؟">Why is this powerful?</span></strong> <span data-ar="لأنك تُقرّر بوعي: هل المطاعم تستحق التضحية بالترفيه؟ هذا السؤال هو الذي يُغيّر عادات الإنفاق على المدى البعيد.">Because you're consciously deciding: is eating out worth sacrificing entertainment? That question is what changes spending habits over the long term.</span></div>
       </div>
     </div>
-    <div class="call cw">
-      <span class="call-ic">⚠️</span>
-      <div><strong>Projected Savings decreases when you cover overspending.</strong> If Eating Out runs $43 over and you increase the budget by $43, your Projected Savings drops from $550 to $507. This is good — it's honest. Your plan was optimistic; the budget now reflects what will actually happen.</div>
-    </div>
-  </div>
 
-  <div class="concept">
-    <span class="concept-tag amber">Practical</span>
-    <h2>What to do when a category goes red</h2>
-    <p>Red means you spent more than you budgeted in that category. In Tracking mode, the fix is simple and low-pressure.</p>
-    <div class="flow" style="margin-top:16px">
-      <div class="fn" style="background:var(--red-bg);border-color:var(--red-border)">Eating Out budgeted: $200<br><small>Spent: $243 | Balance: <strong style="color:var(--red)">−$43</strong></small></div>
-      <span class="fa">→</span>
-      <div class="fn">Increase budget<br>to $245</div>
-      <span class="fa">→</span>
-      <div class="fn" style="background:var(--green-bg);border-color:var(--green-border)">Balance: +$2 ✓<br><small style="color:var(--green)">No more red</small></div>
-      <span class="fa">→</span>
-      <div class="fn" style="background:var(--amber-bg);border-color:var(--amber-border)">Projected Savings<br><small>drops by $43</small></div>
+    <!-- ENVELOPE: ROLLOVER -->
+    <div class="concept">
+      <span class="concept-tag green"><span data-ar="ميزة Envelope">Envelope advantage</span></span>
+      <h2><span data-ar="الفائض يتراكم — بناء وسادة مالية بمرور الوقت">Surpluses roll over — building a cushion over time</span></h2>
+      <p><span data-ar="إذا أنفقت أقل من الميزانية في فئة ما، الفائض ينتقل تلقائياً للشهر القادم ويُضاف لرصيد تلك الفئة. على مدى أشهر، فئات مثل «صيانة السيارة» تبني رصيداً كافياً لتغطية الإصلاحات الكبيرة دون أزمات.">If you spend less than budgeted in a category, the surplus rolls forward automatically to next month and adds to that category's balance. Over months, categories like "Car Maintenance" build up enough to cover big repairs without any crisis.</span></p>
+      <div class="call cs">
+        <span class="call-ic">✅</span>
+        <div><strong><span data-ar="الإيقاع الشهري في Envelope mode:">The monthly Envelope rhythm:</span></strong> <span data-ar="في بداية كل شهر وزّع دخلك على الفئات حتى يصل «To Budget» للصفر. أسبوعياً استورد المعاملات وصنّفها. إذا تجاوزت فئة، نقّل مالاً من فئة أخرى فوراً. في نهاية الشهر راجع التقارير.">At the start of each month distribute your income until "To Budget" = $0. Weekly, import and categorize transactions. If a category overspends, move money immediately. At month end, review Reports.</span></div>
+      </div>
     </div>
-    <div class="how">
-      <div class="how-title">Compare: what you'd do in Envelope mode</div>
-      <p>In Envelope mode, you cannot increase the budget number. You must click the overspent balance and <strong>transfer $43 from another category</strong> — Entertainment, Clothing, or Savings. Something gives way. That's the point of Envelope mode: every overspend has a real trade-off. In Tracking mode, there's no trade-off — you just acknowledge reality and move on. That's why Tracking mode is better to start with.</p>
-    </div>
-  </div>
 
-  <div class="concept">
-    <span class="concept-tag green">Habit</span>
-    <h2>The monthly rhythm: 4 simple habits</h2>
-    <div class="steps">
-      <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t">Start of month: copy last month's budget</div>Click the copy icon at the top of the budget columns to paste last month's numbers as your starting point. Adjust anything you know will be different.</div></div>
-      <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t">Weekly: import transactions and categorize them</div>Set aside 10 minutes once a week to import from your bank and assign categories. Rules will do most of this for you automatically after a few weeks.</div></div>
-      <div class="step"><div class="sn">3</div><div class="step-b"><div class="step-t">As needed: clear any red categories</div>When a category goes red, increase the budget to acknowledge the overrun. Don't leave red categories unaddressed — they distort your Projected Savings.</div></div>
-      <div class="step"><div class="sn g">4</div><div class="step-b"><div class="step-t">Month end: check Reports for honest insights</div>The Spending report will show which categories consistently run over their targets. This is the data you need to make better targets next month — or to decide when you're ready to switch to Envelope mode.</div></div>
-    </div>
-    <div class="call cs" style="margin-top:4px">
-      <span class="call-ic">✅</span>
-      <div><strong>The goal in Tracking mode isn't perfection — it's awareness.</strong> After 2–3 months of real data, you'll understand your spending in a way that no spreadsheet or app estimate could have told you. That awareness is the foundation of real financial change.</div>
-    </div>
-  </div>
+  </div><!-- end #l3-envelope -->
 
-  <div class="next-bar">
-    <div class="next-bar-info"><p>Up next — Lesson 04</p><strong>Accounts: Adding and Managing Your Money</strong></div>
-    <button class="next-btn" onclick="go(3)">Next Lesson →</button>
+
+  <!-- ░░░░░░░ TRACKING CONTENT ░░░░░░░ -->
+  <div id="l3-tracking" style="display:none">
+
+    <!-- CATEGORIES (brief, points back to shared) -->
+    <div class="concept">
+      <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+      <h2><span data-ar="Categories: الأدراج التي يتدفق إليها مالك">Categories: the buckets your money flows into</span></h2>
+      <p><span data-ar="كل معاملة يجب أن تُصنَّف تحت فئة. الفئات تُحوّل قائمة معاملات مجردة إلى معلومات مفيدة. يمكنك تجميع الفئات في مجموعات مثل «الطعام» أو «السكن» لتنظيم أفضل.">Every transaction must be assigned to a category. Categories turn a raw list of transactions into meaningful information. You can group categories (e.g. "Food", "Housing") for better organisation.</span></p>
+      <div class="tip"><span class="tip-ic">💡</span><div><span data-ar="ابدأ بـ ١٠–١٥ فئة واسعة. بعد أول شهر من البيانات الحقيقية ستعرف أيها تحتاج لتقسيم.">Start with 10–15 broad categories. After one month of real data you'll know which need splitting.</span></div></div>
+    </div>
+
+    <!-- TRACKING: SETTING TARGETS -->
+    <div class="concept">
+      <span class="concept-tag amber"><span data-ar="جوهر Tracking mode">The core of Tracking Budget</span></span>
+      <h2><span data-ar="ضع أهدافاً شهرية: توقعاتك للشهر">Set monthly targets: your forecast for the month</span></h2>
+      <p><span data-ar="لكل فئة دخل (كـ«الراتب»)، أدخل ما تتوقع استلامه هذا الشهر. لكل فئة مصاريف، أدخل هدف الإنفاق. هذه توقعات وليست عقوداً. الخطأ مقبول — الهدف هو الحصول على خط أساس تُحسّنه مع الوقت.">For each income category (like "Salary"), enter what you expect to receive. For each expense category, enter your spending target. These are <em>forecasts</em>, not contracts. Being wrong is fine — the goal is a baseline you can refine.</span></p>
+      <p><strong><span data-ar="كيف تجد أرقاماً مناسبة للبداية:">How to find good starting numbers:</span></strong> <span data-ar="اطّلع على كشوفات بنكك لـ٢–٣ أشهر ماضية وقدّر متوسطك لكل فئة. إذا لم تكن متأكداً، خصّص مبلغاً أعلى بقليل.">Open 2–3 months of bank statements and estimate your average per category. If unsure, budget generously.</span></p>
+
+      <!-- TRACKING MOCK TABLE -->
+      <div class="bt" style="margin-top:16px">
+        <div class="bt-bar"><div class="bt-dot" style="background:#ff5f57"></div><div class="bt-dot" style="background:#febc2e"></div><div class="bt-dot" style="background:#28c840"></div><span class="bt-lbl">Budget — March 2025 (Tracking Mode)</span></div>
+        <div style="padding:4px 0">
+          <div class="bt-row bt-h"><span><span data-ar="الفئة">Category</span></span><span class="bn"><span data-ar="المُخصَّص">Budgeted</span></span><span class="bn"><span data-ar="المُنفَق">Spent</span></span><span class="bn"><span data-ar="الرصيد">Balance</span></span></div>
+          <div class="bt-row bt-g"><span>🏠 <span data-ar="السكن">Housing</span></span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="الإيجار">Rent</span></span><span class="bn">$1,500</span><span class="bn">$1,500</span><span class="bn">$0</span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="الكهرباء">Electricity</span></span><span class="bn">$120</span><span class="bn">$98</span><span class="bn p">$22</span></div>
+          <div class="bt-row bt-g"><span>🍽️ <span data-ar="الطعام">Food</span></span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="البقالة">Groceries</span></span><span class="bn">$500</span><span class="bn">$412</span><span class="bn p">$88</span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="المطاعم">Eating Out</span></span><span class="bn">$200</span><span class="bn">$243</span><span class="bn n">−$43</span></div>
+          <div class="bt-row bt-g"><span>🟢 <span data-ar="الادخار">Savings</span></span></div>
+          <div class="bt-row bt-c"><span style="padding-left:12px;color:var(--ink2)"><span data-ar="صندوق الطوارئ">Emergency Fund</span></span><span class="bn">$300</span><span class="bn">$0</span><span class="bn p">$300</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRACKING: MONTHLY SUMMARY -->
+    <div class="concept">
+      <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+      <h2><span data-ar="ملخص الشهر: لوحة نتائجك">The monthly summary: your budget's scoreboard</span></h2>
+      <p><span data-ar="في أعلى صفحة Tracking Budget يوجد شريط ملخص يقارن مبالغك المُخصَّصة (الخطة) بمبالغك الفعلية (الواقع).">At the top of the Tracking Budget page sits a summary bar comparing your budgeted amounts (the plan) against your actual amounts (reality).</span></p>
+      <div class="stat-row">
+        <div class="stat" style="background:var(--green-bg);border:1px solid var(--green-border)">
+          <div class="stat-label" style="color:var(--green)"><span data-ar="الدخل المُخصَّص">Budgeted Income</span></div>
+          <div class="stat-val" style="color:var(--green)">$4,200</div>
+          <div class="stat-desc" style="color:#166534"><span data-ar="ما خططت لاستلامه مقابل ما وصل فعلاً">What you planned to receive vs what actually arrived</span></div>
+        </div>
+        <div class="stat" style="background:var(--red-bg);border:1px solid var(--red-border)">
+          <div class="stat-label" style="color:var(--red)"><span data-ar="المصاريف المُخصَّصة">Budgeted Expenses</span></div>
+          <div class="stat-val" style="color:var(--red)">$3,650</div>
+          <div class="stat-desc" style="color:#7f1d1d"><span data-ar="ما خططت لإنفاقه مقابل ما أُنفق فعلاً">What you planned to spend vs what you actually spent</span></div>
+        </div>
+        <div class="stat" style="background:var(--blue-bg);border:1px solid var(--blue-border)">
+          <div class="stat-label" style="color:var(--blue)">Projected Savings</div>
+          <div class="stat-val" style="color:var(--blue)">$550</div>
+          <div class="stat-desc" style="color:#1e3a8a"><span data-ar="الدخل ناقص المصاريف — الفائض المتوقع">Income − Expenses. Your planned surplus.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRACKING: OVERSPENDING -->
+    <div class="concept">
+      <span class="concept-tag amber"><span data-ar="عملي">Practical</span></span>
+      <h2><span data-ar="ماذا تفعل عندما تتحول فئة للون الأحمر في Tracking mode">What to do when a category goes red in Tracking mode</span></h2>
+      <p><span data-ar="الأحمر يعني أنك أنفقت أكثر مما خططت في تلك الفئة. في Tracking mode الحل بسيط ومنخفض الضغط: فقط ارفع رقم الميزانية.">Red means you spent more than budgeted. In Tracking mode, the fix is simple and low-pressure.</span></p>
+      <div class="flow" style="margin-top:16px">
+        <div class="fn" style="background:var(--red-bg);border-color:var(--red-border)"><span data-ar="المطاعم: مُخصَّص $200">Eating Out budgeted: $200</span><br><small><span data-ar="المُنفَق: $243 | الرصيد:">Spent: $243 | Balance:</span> <strong style="color:var(--red)">−$43</strong></small></div>
+        <span class="fa">→</span>
+        <div class="fn"><span data-ar="ارفع الميزانية إلى $245">Increase budget<br>to $245</span></div>
+        <span class="fa">→</span>
+        <div class="fn" style="background:var(--green-bg);border-color:var(--green-border)"><span data-ar="الرصيد: +$2 ✓">Balance: +$2 ✓</span><br><small style="color:var(--green)"><span data-ar="لا مزيد من الأحمر">No more red</span></small></div>
+        <span class="fa">→</span>
+        <div class="fn" style="background:var(--amber-bg);border-color:var(--amber-border)">Projected Savings<br><small><span data-ar="ينخفض بـ $43">drops by $43</span></small></div>
+      </div>
+      <div class="call cs">
+        <span class="call-ic">✅</span>
+        <div><strong><span data-ar="الهدف من Tracking mode ليس الكمال — بل الوعي.">The goal in Tracking mode isn't perfection — it's awareness.</span></strong> <span data-ar="بعد شهرين أو ثلاثة ستفهم نمط إنفاقك بطريقة لا يستطيع أي تقدير أن يوفرها.">After 2–3 months you'll understand your spending in a way no estimate could tell you.</span></div>
+      </div>
+    </div>
+
+    <!-- TRACKING: RHYTHM -->
+    <div class="concept">
+      <span class="concept-tag green"><span data-ar="عادة">Habit</span></span>
+      <h2><span data-ar="الإيقاع الشهري في Tracking mode">The monthly Tracking mode rhythm</span></h2>
+      <div class="steps">
+        <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t"><span data-ar="بداية الشهر: انسخ ميزانية الشهر الماضي">Start of month: copy last month's budget</span></div><span data-ar="استخدم أيقونة النسخ في أعلى أعمدة الميزانية. عدّل ما تعرف أنه سيختلف.">Click the copy icon at the top of the budget columns. Adjust anything you know will be different.</span></div></div>
+        <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t"><span data-ar="أسبوعياً: استورد المعاملات وصنّفها">Weekly: import and categorize transactions</span></div><span data-ar="خصّص ١٠ دقائق أسبوعياً. ستُعالج القواعد معظمها تلقائياً بعد أسابيع قليلة.">Set aside 10 minutes. Rules will automate most of this after a few weeks.</span></div></div>
+        <div class="step"><div class="sn">3</div><div class="step-b"><div class="step-t"><span data-ar="عند الحاجة: صحّح أي فئة بالأحمر">As needed: clear any red categories</span></div><span data-ar="ارفع رقم الميزانية للاعتراف بالواقع. لا تترك فئات حمراء دون معالجة.">Increase the budget to acknowledge the overrun. Don't leave red categories unaddressed.</span></div></div>
+        <div class="step"><div class="sn g">4</div><div class="step-b"><div class="step-t"><span data-ar="نهاية الشهر: راجع التقارير">Month end: review Reports</span></div><span data-ar="تقرير الإنفاق يُظهر الفئات التي تتجاوز أهدافها باستمرار. هذه البيانات تُساعدك على تحديد أهداف أكثر واقعية الشهر القادم.">The Spending report shows which categories consistently run over. Use this data to set better targets next month.</span></div></div>
+      </div>
+    </div>
+
+  </div><!-- end #l3-tracking -->
+
+      <!-- CATEGORIES FRAMEWORK -->
+    <div class="concept">
+      <span class="concept-tag amber"><span data-ar="عملي">Practical</span></span>
+      <h2><span data-ar="تصميم categories — إطار للبداية">Designing your categories — a starting framework</span></h2>
+      <p><span data-ar="الفئات المثالية شخصية، لكن هذا الهيكل يناسب معظم الناس. ابدأ بهذا وطوّره. أقل فئات في البداية أفضل.">The right categories are personal, but here's a framework that works for most people. Start broad and refine. <strong>Fewer categories is better to start</strong> — you can always split later.</span></p>
+      <div class="g2" style="margin-top:18px">
+        <div class="mini-card"><div class="mini-card-title">🔴 <span data-ar="الالتزامات الثابتة">Fixed Essentials</span></div><p style="font-size:13px;color:var(--ink2)"><span data-ar="فواتير دورية غير قابلة للتفاوض.">Bills that are the same every month and non-negotiable.</span></p><ul class="plain" style="margin-top:10px;font-size:13px"><li><span data-ar="الإيجار أو التمويل العقاري">Rent or Mortgage</span></li><li><span data-ar="التأمين (صحي، سيارة، منزل)">Insurance (health, car, home)</span></li><li><span data-ar="الإنترنت والجوال">Internet &amp; Phone</span></li><li><span data-ar="الكهرباء والماء والغاز">Electricity / Gas / Water</span></li></ul></div>
+        <div class="mini-card"><div class="mini-card-title">🟡 <span data-ar="المصاريف اليومية المتغيرة">Variable Daily Spending</span></div><p style="font-size:13px;color:var(--ink2)"><span data-ar="إنفاق متغيّر يحدث كل شهر.">Spending that fluctuates but happens every month.</span></p><ul class="plain" style="margin-top:10px;font-size:13px"><li><span data-ar="البقالة">Groceries</span></li><li><span data-ar="المطاعم والكافيهات">Eating Out / Restaurants</span></li><li><span data-ar="الوقود والتنقل">Fuel / Transport</span></li><li><span data-ar="العناية الشخصية والملابس">Personal Care &amp; Clothing</span></li></ul></div>
+        <div class="mini-card"><div class="mini-card-title">🔵 <span data-ar="الاشتراكات">Subscriptions</span></div><p style="font-size:13px;color:var(--ink2)"><span data-ar="رسوم دورية قد لا تلاحظها يومياً.">Recurring charges you may not notice day-to-day.</span></p><ul class="plain" style="margin-top:10px;font-size:13px"><li>Streaming (Netflix, Spotify)</li><li><span data-ar="التطبيقات والبرامج">Software / Apps</span></li><li><span data-ar="النادي والعضويات">Gym / Memberships</span></li></ul></div>
+        <div class="mini-card"><div class="mini-card-title">🟢 <span data-ar="الادخار والأهداف">Savings Goals</span></div><p style="font-size:13px;color:var(--ink2)"><span data-ar="مال تضعه جانباً بوعي.">Money you're deliberately setting aside.</span></p><ul class="plain" style="margin-top:10px;font-size:13px"><li><span data-ar="صندوق الطوارئ">Emergency Fund</span></li><li><span data-ar="الإجازة والسفر">Vacation</span></li><li><span data-ar="صيانة السيارة أو المنزل">Car / Home Repair Fund</span></li></ul></div>
+      </div>
+      <div class="tip"><span class="tip-ic">💡</span><div><span data-ar="لا تُضيّع أكثر من ١٠ دقائق في تصميم الفئات قبل أن تكون لديك بيانات حقيقية. ضع شيئاً معقولاً الآن وطوّره بعد أول استيراد.">Don't spend more than 10 minutes on categories before you have real transaction data. Set up something reasonable now, then refine it after your first import.</span></div></div>
+    </div>
+
+  <!-- SHARED NEXT BAR -->
+  <div class="next-bar" style="margin-top:40px">
+    <div class="next-bar-info"><p><span data-ar="الدرس التالي — ٠٤">Up next — Lesson 04</span></p><strong><span data-ar="الحسابات: الإضافة والإدارة">Accounts: Adding and Managing Your Money</span></strong></div>
+    <button class="next-btn" data-ar-text="← الدرس التالي" onclick="go(3)"><span data-ar="الدرس التالي →">Next Lesson →</span></button>
   </div>
 </div>
 
@@ -628,26 +749,26 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 <div class="page" id="p3">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 04 of 09</span>
-      <span class="opener-time">⏱ 7 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠٤ من ٠٩">Lesson 04 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٧ دقائق">⏱ 7 min</span></span>
     </div>
-    <h1>Accounts — Adding and Managing Your Money</h1>
-    <p class="opener-desc">Actual needs to know about every account you have before it can track your finances accurately. This lesson covers On Budget vs Off Budget accounts, how to add them, transfers, reconciliation, payees, tags, and bulk editing.</p>
+    <h1><span data-ar="الحسابات — الإضافة والإدارة">Accounts — Adding and Managing Your Money</span></h1>
+    <p class="opener-desc"><span data-ar="يحتاج Actual معرفة جميع حساباتك لتتبع أموالك بدقة. هذا الدرس يشرح الفرق بين On Budget وOff Budget، وكيفية الإضافة، والتحويلات، وReconciliation، والمدفوعين، والوسوم، والتحرير الجماعي.">Actual needs to know about every account you have before it can track your finances accurately. This lesson covers On Budget vs Off Budget accounts, how to add them, transfers, reconciliation, payees, tags, and bulk editing.</span></p>
   </div>
 
   <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
+    <div class="learn-box-title">🎯 <span data-ar="بنهاية هذا الدرس ستعرف…">By the end of this lesson you will…</span></div>
     <div class="learn-items">
-      <div class="learn-item">Know the difference between On Budget and Off Budget accounts</div>
-      <div class="learn-item">Know how to add all your accounts with the right settings</div>
-      <div class="learn-item">Understand transfers, reconciliation, payees, and tags</div>
-      <div class="learn-item">Know how to bulk-edit transactions</div>
+      <div class="learn-item"><span data-ar="الفرق بين On Budget وOff Budget accounts">Know the difference between On Budget and Off Budget accounts</span></div>
+      <div class="learn-item"><span data-ar="كيف تُضيف حساباتك بالإعدادات الصحيحة">Know how to add all your accounts with the right settings</span></div>
+      <div class="learn-item"><span data-ar="فهم Transfers وReconciliation والمدفوعين والوسوم">Understand transfers, reconciliation, payees, and tags</span></div>
+      <div class="learn-item"><span data-ar="كيف تُحرّر معاملات متعددة دفعة واحدة">Know how to bulk-edit transactions</span></div>
     </div>
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>On Budget vs Off Budget: two kinds of accounts</h2>
+    <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="On Budget مقابل Off Budget: نوعان من الحسابات">On Budget vs Off Budget: two kinds of accounts</span></h2>
     <p>Actual makes a distinction between accounts that affect your budget and accounts that are just tracked for your net worth. Understanding this is important before you add a single account.</p>
     <div class="g2" style="margin-top:16px">
       <div class="mini-card" style="border-color:var(--green-border);background:var(--green-bg)">
@@ -668,8 +789,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Action</span>
-    <h2>Adding your accounts</h2>
+    <span class="concept-tag amber"><span data-ar="إجراء">Action</span></span>
+    <h2><span data-ar="إضافة حساباتك">Adding your accounts</span></h2>
     <p>When you first open Actual, a large <strong>Add Account</strong> button is shown in the centre of the screen. Clicking it starts a simple wizard. You can add more accounts at any time using <strong>+ Add account</strong> at the bottom of the sidebar.</p>
     <p>For each account, enter the <strong>current balance shown in your bank's app</strong>. Don't go back months — start from today. That balance becomes the opening transaction in Actual.</p>
     <div class="ss" style="margin-top:14px">
@@ -691,11 +812,11 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>Transfers: moving money between your own accounts</h2>
+    <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="Transfers: نقل المال بين حساباتك">Transfers: moving money between your own accounts</span></h2>
     <p>When you move money between two accounts you own — checking to savings, or paying a credit card — you use a <strong>Transfer</strong>, not a regular categorized transaction. This matters because a transfer doesn't affect your budget: the money is still yours, it just moved.</p>
     <div class="how">
-      <div class="how-title">In Actual this looks like…</div>
+      <div class="how-title"><span data-ar="كيف يبدو هذا في التطبيق">In Actual this looks like…</span></div>
       <p>In the Payee field, click <strong>Make Transfer</strong> and choose the destination account. Actual automatically creates matching entries in both accounts — a debit in one, a credit in the other. They're linked: editing one updates the other.</p>
     </div>
     <div class="ss" style="margin-top:14px">
@@ -709,11 +830,11 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>Reconciliation: verifying your records against your bank</h2>
+    <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="Reconciliation: التحقق من تطابق سجلاتك مع بنكك">Reconciliation: verifying your records against your bank</span></h2>
     <p>Reconciliation is the habit of comparing Actual's transaction list to your official bank statement and confirming they match. It catches missing transactions, accidental duplicates, and amounts you may have mistyped.</p>
     <div class="how">
-      <div class="how-title">In Actual this looks like…</div>
+      <div class="how-title"><span data-ar="كيف يبدو هذا في التطبيق">In Actual this looks like…</span></div>
       <p>Click the 🔒 lock icon in the top-right of any account. Enter your current bank balance. Actual shows you a "Difference" number. Go through transactions ticking the ones that appear on your statement (grey circle = unconfirmed, green = confirmed). When Difference reaches $0, click "Done Reconciling." Reconciled transactions are locked.</p>
     </div>
     <div class="ss" style="margin-top:14px">
@@ -724,8 +845,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Practical</span>
-    <h2>Payees, tags, and bulk editing</h2>
+    <span class="concept-tag amber"><span data-ar="عملي">Practical</span></span>
+    <h2><span data-ar="Payees والوسوم والتحرير الجماعي">Payees, tags, and bulk editing</span></h2>
     <p>Three features that make managing transactions much faster once you have real data coming in.</p>
 
     <h3 style="margin-top:18px">Payees — cleaning up ugly bank names</h3>
@@ -759,8 +880,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Practical</span>
-    <h2>Filtering transactions</h2>
+    <span class="concept-tag amber"><span data-ar="عملي">Practical</span></span>
+    <h2><span data-ar="تصفية المعاملات">Filtering transactions</span></h2>
     <p>The Filter button above any transaction list lets you narrow what you see using multiple stacked conditions. This is far more powerful than text search — you can combine date ranges, categories, amounts, payees, and tags.</p>
     <div class="ss" style="margin-top:12px">
       <img src="https://actualbudget.org/assets/images/filter-d3be3a9ef5f5e1206279bea9c92aa2a0.webp" alt="Filter dropdown" loading="lazy">
@@ -777,8 +898,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="next-bar">
-    <div class="next-bar-info"><p>Up next — Lesson 05</p><strong>Credit Cards: The Part Everyone Gets Wrong</strong></div>
-    <button class="next-btn" onclick="go(4)">Next Lesson →</button>
+    <div class="next-bar-info"><p><span data-ar="الدرس التالي — ٠٥">Up next — Lesson 05</span></p><strong><span data-ar="بطاقات الائتمان: الجزء الذي يُربك الجميع">Credit Cards: The Part Everyone Gets Wrong</span></strong></div>
+    <button class="next-btn" data-ar-text="← الدرس التالي" onclick="go(4)">Next Lesson →</button>
   </div>
 </div>
 
@@ -789,37 +910,37 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 <div class="page" id="p4">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 05 of 09</span>
-      <span class="opener-time">⏱ 6 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠٥ من ٠٩">Lesson 05 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٦ دقائق">⏱ 6 min</span></span>
     </div>
-    <h1>Credit Cards: The Part Everyone Gets Wrong</h1>
-    <p class="opener-desc">More questions are asked about credit cards in Actual than any other topic. This lesson explains the underlying concept first, then walks through a complete worked example so there are no surprises.</p>
+    <h1><span data-ar="بطاقات الائتمان: الجزء الذي يُربك الجميع">Credit Cards: The Part Everyone Gets Wrong</span></h1>
+    <p class="opener-desc"><span data-ar="بطاقات الائتمان من أكثر المواضيع التي تُطرح أسئلة عنها في Actual. هذا الدرس يشرح المفهوم الأساسي أولاً، ثم يستعرض مثالاً كاملاً حتى لا تكون هناك مفاجآت.">More questions are asked about credit cards in Actual than any other topic. This lesson explains the underlying concept first, then walks through a complete worked example so there are no surprises.</span></p>
   </div>
 
   <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
+    <div class="learn-box-title">🎯 <span data-ar="بنهاية هذا الدرس ستعرف…">By the end of this lesson you will…</span></div>
     <div class="learn-items">
-      <div class="learn-item">Understand how Actual treats credit cards (the core concept)</div>
-      <div class="learn-item">Know what happens to your budget when you swipe the card</div>
-      <div class="learn-item">Know how to record credit card payments correctly</div>
-      <div class="learn-item">Understand what to do if you carry a balance</div>
+      <div class="learn-item"><span data-ar="كيف يُعامل Actual بطاقات الائتمان">Understand how Actual treats credit cards (the core concept)</span></div>
+      <div class="learn-item"><span data-ar="ما الذي يحدث لميزانيتك عند استخدام البطاقة">Know what happens to your budget when you swipe the card</span></div>
+      <div class="learn-item"><span data-ar="كيف تُسجّل دفعات البطاقة بالطريقة الصحيحة">Know how to record credit card payments correctly</span></div>
+      <div class="learn-item"><span data-ar="كيف تتعامل مع رصيد مُستحق متراكم">Understand what to do if you carry a balance</span></div>
     </div>
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Core Concept</span>
-    <h2>The mental model: credit cards hold negative dollars</h2>
+    <span class="concept-tag blue"><span data-ar="المفهوم الجوهري">Core Concept</span></span>
+    <h2><span data-ar="الإطار الذهني: بطاقات الائتمان تحمل أرصدة سالبة">The mental model: credit cards hold negative dollars</span></h2>
     <p>In Actual, a credit card is just another account — but it holds <em>negative</em> money. When you create the account, its balance is negative (what you currently owe). As you make purchases, the balance gets more negative. When you pay the card, positive dollars from your checking account cancel out the negative ones.</p>
     <p>The most important thing to understand: <strong>your budget categories are updated at the moment of purchase, not when you pay the bill.</strong> When you buy $50 of groceries on your Visa, your Groceries category decreases by $50 immediately. Paying the card later is just accounting — moving money between accounts.</p>
     <div class="how">
-      <div class="how-title">Why this is better than how you might be thinking about it</div>
+      <div class="how-title"><span data-ar="لماذا هذا أفضل من طريقة تفكيرك المعتادة">Why this is better than how you might be thinking about it</span></div>
       <p>Some people think of credit card spending as "not real money yet" until the bill arrives. Actual disagrees — and rightly so. You've committed to that $50 the moment you bought the groceries. Recording it immediately means your budget always reflects reality, not a month-old picture.</p>
     </div>
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Worked Example</span>
-    <h2>Tracing a purchase end to end</h2>
+    <span class="concept-tag amber"><span data-ar="مثال عملي">Worked Example</span></span>
+    <h2><span data-ar="تتبع عملية شراء من البداية للنهاية">Tracing a purchase end to end</span></h2>
     <p>Let's trace exactly what happens when you spend $50 on groceries with your credit card, then pay the card at month end.</p>
 
     <div style="display:flex;flex-direction:column;gap:14px;margin-top:16px">
@@ -848,8 +969,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag green">Step by Step</span>
-    <h2>Paying in full each month — the full workflow</h2>
+    <span class="concept-tag green"><span data-ar="خطوة بخطوة">Step by Step</span></span>
+    <h2><span data-ar="السداد الكامل كل شهر — المسار الكامل">Paying in full each month — the full workflow</span></h2>
     <div class="steps">
       <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t">Add your credit card as an On Budget account</div><p>Always On Budget — never Off Budget. Enter the current balance you owe (as a negative number).</p></div></div>
       <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t">Make purchases — categorize each one when it appears</div><p>Each purchase reduces the relevant budget category immediately. In Tracking mode, as long as the category has a reasonable budget, you're fine.</p></div></div>
@@ -876,8 +997,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Edge Case</span>
-    <h2>If you carry a balance (paying minimum payments)</h2>
+    <span class="concept-tag amber"><span data-ar="حالة خاصة">Edge Case</span></span>
+    <h2><span data-ar="عند وجود رصيد مستحق متراكم">If you carry a balance (paying minimum payments)</span></h2>
     <p>If you can't pay the full statement balance one month, the remaining negative balance on the card carries forward. To manage this in Tracking mode:</p>
     <ul class="plain" style="margin-top:12px">
       <li>Create a category called "Visa Debt Payment" (or similar)</li>
@@ -889,8 +1010,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="next-bar">
-    <div class="next-bar-info"><p>Up next — Lesson 06</p><strong>Transactions: Getting Data Into Actual</strong></div>
-    <button class="next-btn" onclick="go(5)">Next Lesson →</button>
+    <div class="next-bar-info"><p><span data-ar="الدرس التالي — ٠٦">Up next — Lesson 06</span></p><strong><span data-ar="المعاملات: إدخال البيانات في Actual">Transactions: Getting Data Into Actual</span></strong></div>
+    <button class="next-btn" data-ar-text="← الدرس التالي" onclick="go(5)">Next Lesson →</button>
   </div>
 </div>
 
@@ -901,26 +1022,26 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 <div class="page" id="p5">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 06 of 09</span>
-      <span class="opener-time">⏱ 5 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠٦ من ٠٩">Lesson 06 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٥ دقائق">⏱ 5 min</span></span>
     </div>
-    <h1>Transactions: Getting Data Into Actual</h1>
-    <p class="opener-desc">Actual is only as useful as the transaction data inside it. This lesson covers every way to get transactions in — from fully automatic bank sync to manual entry — and how to handle duplicates.</p>
+    <h1><span data-ar="المعاملات: إدخال البيانات في Actual">Transactions: Getting Data Into Actual</span></h1>
+    <p class="opener-desc"><span data-ar="Actual لا يفيدك إلا بقدر ما فيه من بيانات. هذا الدرس يستعرض كل طريقة لإدخال المعاملات — من المزامنة التلقائية إلى الإدخال اليدوي — وكيف تتعامل مع التكرار.">Actual is only as useful as the transaction data inside it. This lesson covers every way to get transactions in — from fully automatic bank sync to manual entry — and how to handle duplicates.</span></p>
   </div>
 
   <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
+    <div class="learn-box-title">🎯 <span data-ar="بنهاية هذا الدرس ستعرف…">By the end of this lesson you will…</span></div>
     <div class="learn-items">
-      <div class="learn-item">Know all three ways to get transactions into Actual</div>
-      <div class="learn-item">Be able to import a CSV file from your bank</div>
-      <div class="learn-item">Know how to handle duplicate transactions</div>
-      <div class="learn-item">Understand why OFX/QFX files are better than CSV</div>
+      <div class="learn-item"><span data-ar="جميع طرق إدخال المعاملات في Actual">Know all three ways to get transactions into Actual</span></div>
+      <div class="learn-item"><span data-ar="كيف تستورد ملف CSV من بنكك">Be able to import a CSV file from your bank</span></div>
+      <div class="learn-item"><span data-ar="كيف تتعامل مع المعاملات المكررة">Know how to handle duplicate transactions</span></div>
+      <div class="learn-item"><span data-ar="لماذا ملفات OFX/QFX أفضل من CSV">Understand why OFX/QFX files are better than CSV</span></div>
     </div>
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>Three ways to get transactions in</h2>
+    <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="ثلاث طرق لإدخال المعاملات">Three ways to get transactions in</span></h2>
     <p>Choose based on your bank's capabilities and how much automation you want. Most people end up using File Import as a weekly habit, or Bank Sync if their bank is supported.</p>
 
     <div class="g3" style="margin-top:16px">
@@ -954,8 +1075,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Step by Step</span>
-    <h2>Importing a CSV file from your bank</h2>
+    <span class="concept-tag amber"><span data-ar="خطوة بخطوة">Step by Step</span></span>
+    <h2><span data-ar="استيراد ملف CSV من بنكك">Importing a CSV file from your bank</span></h2>
     <div class="steps">
       <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t">Log into your bank and download a transaction file</div>Look under "Transaction History," "Download Statement," or similar. Choose OFX if available; CSV otherwise. Select a date range from the start of this month.</div></div>
       <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t">In Actual: open the account → click Import → select the file</div></div></div>
@@ -970,11 +1091,11 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>Handling duplicates</h2>
+    <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="التعامل مع المعاملات المكررة">Handling duplicates</span></h2>
     <p>If you enter a transaction manually and then later import the same one from your bank, you'll have a duplicate. Actual gives you a way to merge them cleanly.</p>
     <div class="how">
-      <div class="how-title">In Actual this looks like…</div>
+      <div class="how-title"><span data-ar="كيف يبدو هذا في التطبيق">In Actual this looks like…</span></div>
       <p>Select both duplicate transactions, then press <kbd>G</kbd> or use the dropdown → Merge. Actual keeps the more reliable version (bank-synced wins over imported, imported wins over manual) and copies any missing information (category, notes) from the dropped one to the kept one.</p>
     </div>
     <div class="ss" style="margin-top:14px">
@@ -984,8 +1105,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="next-bar">
-    <div class="next-bar-info"><p>Up next — Lesson 07</p><strong>Rules: Let Actual Do the Work For You</strong></div>
-    <button class="next-btn" onclick="go(6)">Next Lesson →</button>
+    <div class="next-bar-info"><p><span data-ar="الدرس التالي — ٠٧">Up next — Lesson 07</span></p><strong><span data-ar="القواعد: دعِ Actual يعمل عنك">Rules: Let Actual Do the Work For You</span></strong></div>
+    <button class="next-btn" data-ar-text="← الدرس التالي" onclick="go(6)">Next Lesson →</button>
   </div>
 </div>
 
@@ -996,26 +1117,26 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 <div class="page" id="p6">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 07 of 09</span>
-      <span class="opener-time">⏱ 5 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠٧ من ٠٩">Lesson 07 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٥ دقائق">⏱ 5 min</span></span>
     </div>
-    <h1>Rules: Let Actual Do the Work For You</h1>
-    <p class="opener-desc">Manually categorizing every transaction gets old fast. Rules are how Actual learns from you and automates the repetitive work — so importing transactions eventually requires almost no effort.</p>
+    <h1><span data-ar="القواعد: دعِ Actual يعمل عنك">Rules: Let Actual Do the Work For You</span></h1>
+    <p class="opener-desc"><span data-ar="تصنيف كل معاملة يدوياً أمر مُرهق. Rules هي الطريقة التي يتعلم بها Actual من سلوكك ويُؤتمِت العمل المتكرر — حتى يصبح استيراد المعاملات شبه تلقائي.">Manually categorizing every transaction gets old fast. Rules are how Actual learns from you and automates the repetitive work — so importing transactions eventually requires almost no effort.</span></p>
   </div>
 
   <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
+    <div class="learn-box-title">🎯 <span data-ar="بنهاية هذا الدرس ستعرف…">By the end of this lesson you will…</span></div>
     <div class="learn-items">
-      <div class="learn-item">Understand what rules are and how they work</div>
-      <div class="learn-item">Know how Actual creates rules automatically from your behaviour</div>
-      <div class="learn-item">Know how to view, edit, and create rules manually</div>
-      <div class="learn-item">Understand rule stages (pre, default, post)</div>
+      <div class="learn-item"><span data-ar="ما هي Rules وكيف تعمل">Understand what rules are and how they work</span></div>
+      <div class="learn-item"><span data-ar="كيف ينشئ Actual قواعد تلقائياً من سلوكك">Know how Actual creates rules automatically from your behaviour</span></div>
+      <div class="learn-item"><span data-ar="كيف تعرض وتحرر وتنشئ Rules يدوياً">Know how to view, edit, and create rules manually</span></div>
+      <div class="learn-item"><span data-ar="مراحل القواعد (pre, default, post)">Understand rule stages (pre, default, post)</span></div>
     </div>
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>What a rule is: an "if → then" instruction</h2>
+    <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="ما هي القاعدة: تعليمة «إذا → إذن»">What a rule is: an "if → then" instruction</span></h2>
     <p>Every time a transaction is imported, Actual runs it through all your rules in order. A rule has two parts: <strong>conditions</strong> (when to fire) and <strong>actions</strong> (what to change). If all conditions match, all actions are applied.</p>
     <p>The most common use is cleaning up ugly payee names and setting categories automatically. For example:</p>
 
@@ -1031,8 +1152,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag green">The Good News</span>
-    <h2>Actual writes most rules for you automatically</h2>
+    <span class="concept-tag green"><span data-ar="البشرى السارة">The Good News</span></span>
+    <h2><span data-ar="Actual ينشئ معظم القواعد تلقائياً">Actual writes most rules for you automatically</span></h2>
     <p>You don't need to build your rule library from scratch. Actual watches your behaviour and creates rules based on what you do:</p>
     <div class="steps" style="margin-top:12px">
       <div class="step"><div class="sn">A</div><div class="step-b"><div class="step-t">When you rename a payee</div>Actual asks: "Apply this rename automatically in future?" Click yes and it creates a pre-stage rule. That ugly bank name will never appear again.</div></div>
@@ -1045,8 +1166,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Reference</span>
-    <h2>Condition types and available fields</h2>
+    <span class="concept-tag blue"><span data-ar="مرجع">Reference</span></span>
+    <h2><span data-ar="أنواع الشروط والحقول المتاحة">Condition types and available fields</span></h2>
     <table class="dt" style="margin-top:12px">
       <thead><tr><th>Condition</th><th>What it matches</th><th>Example</th></tr></thead>
       <tbody>
@@ -1062,8 +1183,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Practical</span>
-    <h2>Rule stages: controlling the order</h2>
+    <span class="concept-tag amber"><span data-ar="عملي">Practical</span></span>
+    <h2><span data-ar="مراحل القواعد: التحكم في الترتيب">Rule stages: controlling the order</span></h2>
     <p>Rules run in three stages. Knowing this prevents confusion when multiple rules affect the same transaction.</p>
     <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
       <div style="display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--purple-bg);border:1px solid var(--purple-border);border-radius:var(--radius-sm)">
@@ -1082,8 +1203,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag green">Action</span>
-    <h2>Viewing and managing your rules</h2>
+    <span class="concept-tag green"><span data-ar="إجراء">Action</span></span>
+    <h2><span data-ar="عرض قواعدك وإدارتها">Viewing and managing your rules</span></h2>
     <div class="steps">
       <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t">Go to More → Rules in the sidebar</div>See all your rules, including the ones Actual created automatically for you.</div></div>
       <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t">Click "edit" on any rule to view it in detail</div>The editor shows a live list of existing transactions that match your conditions — excellent feedback before saving.</div></div>
@@ -1093,8 +1214,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="next-bar">
-    <div class="next-bar-info"><p>Up next — Lesson 08</p><strong>Reports: Understanding What Your Data Is Telling You</strong></div>
-    <button class="next-btn" onclick="go(7)">Next Lesson →</button>
+    <div class="next-bar-info"><p><span data-ar="الدرس التالي — ٠٨">Up next — Lesson 08</span></p><strong><span data-ar="التقارير: ما الذي تُخبرك به بياناتك">Reports: Understanding What Your Data Is Telling You</span></strong></div>
+    <button class="next-btn" data-ar-text="← الدرس التالي" onclick="go(7)">Next Lesson →</button>
   </div>
 </div>
 
@@ -1105,26 +1226,26 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 <div class="page" id="p7">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 08 of 09</span>
-      <span class="opener-time">⏱ 5 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠٨ من ٠٩">Lesson 08 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٥ دقائق">⏱ 5 min</span></span>
     </div>
-    <h1>Reports: What Your Data Is Telling You</h1>
-    <p class="opener-desc">Reports turn your categorized transactions into honest insights about your financial life. After a month or two of real data, this becomes the most valuable part of Actual.</p>
+    <h1><span data-ar="التقارير: ما الذي تُخبرك به بياناتك">Reports: What Your Data Is Telling You</span></h1>
+    <p class="opener-desc"><span data-ar="تحوّل التقارير معاملاتك المُصنَّفة إلى رؤى صادقة عن حياتك المالية. بعد شهر أو شهرين من البيانات الحقيقية، يُصبح هذا القسم الأكثر قيمة في Actual.">Reports turn your categorized transactions into honest insights about your financial life. After a month or two of real data, this becomes the most valuable part of Actual.</span></p>
   </div>
 
   <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
+    <div class="learn-box-title">🎯 <span data-ar="بنهاية هذا الدرس ستعرف…">By the end of this lesson you will…</span></div>
     <div class="learn-items">
-      <div class="learn-item">Understand what each built-in report shows you</div>
-      <div class="learn-item">Know how to use the Spending Analysis to improve your budget</div>
-      <div class="learn-item">Know how to build a custom report</div>
-      <div class="learn-item">Know what to look for to decide if you're ready for Envelope mode</div>
+      <div class="learn-item"><span data-ar="ما الذي يُظهره كل تقرير مدمج">Understand what each built-in report shows you</span></div>
+      <div class="learn-item"><span data-ar="كيف تستخدم Spending Analysis لتحسين ميزانيتك">Know how to use the Spending Analysis to improve your budget</span></div>
+      <div class="learn-item"><span data-ar="كيف تبني تقريراً مخصصاً">Know how to build a custom report</span></div>
+      <div class="learn-item"><span data-ar="علامات الاستعداد للانتقال لـ Envelope mode">Know what to look for to decide if you're ready for Envelope mode</span></div>
     </div>
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Concept</span>
-    <h2>The Reports dashboard: your financial mirror</h2>
+    <span class="concept-tag blue"><span data-ar="مفهوم">Concept</span></span>
+    <h2><span data-ar="لوحة التقارير: مرآتك المالية">The Reports dashboard: your financial mirror</span></h2>
     <p>The Reports section is separate from the budget page. Where the budget page tells you what you <em>planned</em> to spend, Reports tell you what <em>actually happened</em>. After even a month of use, the reports reveal things about your spending that will surprise you.</p>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/dashboard-eba5650499b7aa9635f6147fa58d1ab0.webp" alt="Reports Dashboard" loading="lazy">
@@ -1133,8 +1254,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Report 1</span>
-    <h2>Cash Flow: "Did I save money this month?"</h2>
+    <span class="concept-tag amber"><span data-ar="التقرير الأول">Report 1</span></span>
+    <h2><span data-ar="Cash Flow: «هل ادخرت مالاً هذا الشهر؟»">Cash Flow: "Did I save money this month?"</span></h2>
     <p>Cash flow shows the balance of all your On Budget accounts over time. A month where the bar goes up means your accounts collectively grew — you saved money. A bar going down means you spent more than came in.</p>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/cash-flow-70df064084ebab54cdb6ad9b90991abe.webp" alt="Cash Flow graph" loading="lazy">
@@ -1147,8 +1268,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Report 2</span>
-    <h2>Net Worth: "Am I building wealth?"</h2>
+    <span class="concept-tag amber"><span data-ar="التقرير الثاني">Report 2</span></span>
+    <h2><span data-ar="Net Worth: «هل أبني ثروة؟»">Net Worth: "Am I building wealth?"</span></h2>
     <p>Net worth is everything you own minus everything you owe — cash, investments, property equity, minus debts, mortgages, and loans. It's the single most important number in your financial life, and it should trend upward over time.</p>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/net-worth-0b5d32c239d7543894671a51f4ba3f3d.webp" alt="Net Worth graph" loading="lazy">
@@ -1157,8 +1278,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">Report 3</span>
-    <h2>Spending Analysis: "Where does my money actually go?"</h2>
+    <span class="concept-tag amber"><span data-ar="التقرير الثالث">Report 3</span></span>
+    <h2><span data-ar="Spending Analysis: «أين تذهب أموالي فعلاً؟»">Spending Analysis: "Where does my money actually go?"</span></h2>
     <p>This is the most revelatory report for Tracking mode users. It shows your actual spending broken down by category — not what you budgeted, but what you spent. Most people are surprised by at least one category.</p>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/spending-analysis-2a188e66c232c7384af5c2a513fa4b1a.webp" alt="Spending Analysis" loading="lazy">
@@ -1171,17 +1292,14 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag green">Action</span>
-    <h2>Custom Reports: build exactly the analysis you need</h2>
+    <span class="concept-tag green"><span data-ar="إجراء">Action</span></span>
+    <h2><span data-ar="Custom Reports: بنِ التحليل الذي تحتاجه">Custom Reports: build exactly the analysis you need</span></h2>
     <p>Beyond the built-in reports, you can create custom reports tailored to specific questions — "How much did I spend on my car in 2024?" or "What's my average monthly spending on food over the last 6 months?"</p>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/cr-fancy-example-f06bd2bb79b64706c74a5e527a2a14f5.webp" alt="Custom report examples" loading="lazy">
       <div class="ss-cap"><span class="ss-cap-icon">📍</span>Custom report examples — bar, line, area, donut, and table views. Build once, save to the dashboard.</div>
     </div>
-    <div class="ss">
-      <img src="https://actualbudget.org/assets/images/cr-left-menu-e04e04d8f3bbc5d2213074eb6a3f649c.webp" alt="Custom report options" loading="lazy">
-      <div class="ss-cap"><span class="ss-cap-icon">📍</span>Custom report options — choose Payment/Deposit/Net, split by category/payee/month, and use the funnel icon to add filters.</div>
-    </div>
+    
     <div class="call ci">
       <span class="call-ic">💡</span>
       <div><strong>Tip:</strong> Combine custom reports with tags for powerful specific analysis. Tag all holiday spending with #holiday2025, then build a custom report filtered to that tag — instant holiday budget summary across all categories and accounts.</div>
@@ -1189,11 +1307,10 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="next-bar">
-    <div class="next-bar-info"><p>Up next — Lesson 09</p><strong>Tips, FAQ & Your Path Forward</strong></div>
-    <button class="next-btn" onclick="go(8)">Next Lesson →</button>
+    <div class="next-bar-info"><p><span data-ar="الدرس التالي — ٠٩">Up next — Lesson 09</span></p><strong>Tips, FAQ & Your Path Forward</strong></div>
+    <button class="next-btn" data-ar-text="← الدرس التالي" onclick="go(8)">Next Lesson →</button>
   </div>
 </div>
-
 
 <!-- ╔══════════════════════════════════════════════════════════╗ -->
 <!-- ║  09  TIPS & FAQ                                         ║ -->
@@ -1201,26 +1318,26 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
 <div class="page" id="p8">
   <div class="opener">
     <div class="opener-meta">
-      <span class="opener-num">Lesson 09 of 09</span>
-      <span class="opener-time">⏱ 4 min</span>
+      <span class="opener-num"><span data-ar="الدرس ٠٩ من ٠٩">Lesson 09 of 09</span></span>
+      <span class="opener-time"><span data-ar="⏱ ٤ دقائق">⏱ 4 min</span></span>
     </div>
     <h1>Tips, FAQ & Your Path Forward</h1>
-    <p class="opener-desc">You've completed the core course. This final lesson covers power user shortcuts, answers the most common questions, and gives you a clear decision framework for when to switch from Tracking to Envelope mode.</p>
+    <p class="opener-desc"><span data-ar="أتممت الدورة الأساسية. هذا الدرس الأخير يستعرض اختصارات المستخدم المتقدم، يجيب على أكثر الأسئلة شيوعاً، ويمنحك إطاراً واضحاً للانتقال من Tracking إلى Envelope mode.">You've completed the core course. This final lesson covers power user shortcuts, answers the most common questions, and gives you a clear decision framework for when to switch from Tracking to Envelope mode.</span></p>
   </div>
 
   <div class="learn-box">
-    <div class="learn-box-title">🎯 By the end of this lesson you will…</div>
+    <div class="learn-box-title">🎯 <span data-ar="بنهاية هذا الدرس ستعرف…">By the end of this lesson you will…</span></div>
     <div class="learn-items">
-      <div class="learn-item">Know the most useful keyboard shortcuts and power features</div>
-      <div class="learn-item">Have answers to the most common beginner questions</div>
-      <div class="learn-item">Have a clear framework for when to switch to Envelope mode</div>
-      <div class="learn-item">Know where to go when you have questions beyond this course</div>
+      <div class="learn-item"><span data-ar="أكثر اختصارات لوحة المفاتيح والميزات الاحترافية فائدةً">Know the most useful keyboard shortcuts and power features</span></div>
+      <div class="learn-item"><span data-ar="إجابات أكثر أسئلة المبتدئين شيوعاً">Have answers to the most common beginner questions</span></div>
+      <div class="learn-item"><span data-ar="إطار قرار واضح: متى تنتقل لـ Envelope mode">Have a clear framework for when to switch to Envelope mode</span></div>
+      <div class="learn-item"><span data-ar="أين تذهب عند الحاجة لمساعدة إضافية">Know where to go when you have questions beyond this course</span></div>
     </div>
   </div>
 
   <div class="concept">
-    <span class="concept-tag green">Decision Framework</span>
-    <h2>When are you ready to switch to Envelope mode?</h2>
+    <span class="concept-tag green"><span data-ar="إطار القرار">Decision Framework</span></span>
+    <h2><span data-ar="متى تكون مستعداً للانتقال لـ Envelope mode؟">When are you ready to switch to Envelope mode?</span></h2>
     <p>Envelope mode isn't harder — it's just more demanding. It requires you to actively manage your budget mid-month, not just review it at the end. Here are the signs you're ready:</p>
     <div class="g2" style="margin-top:16px">
       <div class="mini-card" style="border-color:var(--green-border)">
@@ -1250,8 +1367,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag blue">Reference</span>
-    <h2>Keyboard shortcuts and power features</h2>
+    <span class="concept-tag blue"><span data-ar="مرجع">Reference</span></span>
+    <h2><span data-ar="اختصارات لوحة المفاتيح والميزات الاحترافية">Keyboard shortcuts and power features</span></h2>
     <table class="dt" style="margin-top:12px">
       <thead><tr><th>Shortcut / Feature</th><th>What it does</th></tr></thead>
       <tbody>
@@ -1267,8 +1384,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept">
-    <span class="concept-tag amber">FAQ</span>
-    <h2>Common questions answered</h2>
+    <span class="concept-tag amber"><span data-ar="أسئلة شائعة">FAQ</span></span>
+    <h2><span data-ar="أكثر الأسئلة شيوعاً">Common questions answered</span></h2>
 
     <div style="display:flex;flex-direction:column;margin-top:4px">
       <div style="padding:16px 0;border-bottom:1px solid var(--border)">
@@ -1301,8 +1418,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   <!-- COURSE COMPLETE -->
   <div style="background:linear-gradient(135deg,#0c1426,#1a2a4a);border-radius:var(--radius);padding:32px;text-align:center;margin-top:24px;color:#fff">
     <div style="font-size:36px;margin-bottom:12px">🎓</div>
-    <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;margin-bottom:10px;color:#fff">Course Complete</h2>
-    <p style="color:rgba(255,255,255,.65);max-width:440px;margin:0 auto 20px;font-size:15px">You now have everything you need to use Actual Budget confidently. The rest comes from building the weekly habit and letting the data accumulate.</p>
+    <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;margin-bottom:10px;color:#fff"><span data-ar="أتممت الدورة بنجاح">Course Complete</span></h2>
+    <p style="color:rgba(255,255,255,.65);max-width:440px;margin:0 auto 20px;font-size:15px"><span data-ar="لديك الآن كل ما تحتاجه لاستخدام Actual Budget بثقة. الباقي يأتي من بناء العادة الأسبوعية والسماح للبيانات بالتراكم.">You now have everything you need to use Actual Budget confidently. The rest comes from building the weekly habit and letting the data accumulate.</span></p>
     <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
       <a href="https://actualbudget.org/docs/" target="_blank" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:9px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;text-decoration:none">📖 Full Docs</a>
       <a href="https://discord.gg/8JfAXSgfRf" target="_blank" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:9px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;text-decoration:none">💬 Community Discord</a>
@@ -1311,8 +1428,8 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 
   <div class="concept" style="margin-top:20px">
-    <span class="concept-tag blue">Official Resources</span>
-    <h2>Where to go next</h2>
+    <span class="concept-tag blue"><span data-ar="مصادر رسمية">Official Resources</span></span>
+    <h2><span data-ar="أين تذهب للمزيد">Where to go next</span></h2>
     <ul class="plain">
       <li><a href="https://actualbudget.org/docs/getting-started/tracking-budget" target="_blank">Tracking Budget official documentation</a></li>
       <li><a href="https://actualbudget.org/docs/getting-started/envelope-budgeting" target="_blank">Envelope Budgeting guide</a> — for when you're ready to go deeper</li>
@@ -1324,13 +1441,14 @@ hr.div{border:none;border-top:1px solid var(--border);margin:28px 0}
   </div>
 </div>
 
+
 <script>
+// ── LESSON NAV ────────────────────────────────────────────────────────────
 const btns = document.querySelectorAll('.pnav-btn');
 const pages = document.querySelectorAll('.page');
 let current = 0;
 
 function go(i) {
-  // mark visited
   if (i > current) btns[current].classList.add('done');
   current = i;
   btns.forEach((b,j) => {
@@ -1339,6 +1457,120 @@ function go(i) {
   });
   pages.forEach((p,j) => p.classList.toggle('visible', j===i));
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── MODE CHOICE (lesson 2) ────────────────────────────────────────────────
+let chosenMode = 'envelope'; // default
+
+function selectMode(mode) {
+  chosenMode = mode;
+  const isAr = document.body.classList.contains('ar');
+
+  // Highlight selected card
+  document.getElementById('mode-card-envelope').style.borderColor = mode === 'envelope' ? 'var(--green)' : 'var(--border)';
+  document.getElementById('mode-card-envelope').style.boxShadow  = mode === 'envelope' ? '0 0 0 3px rgba(22,163,74,.12)' : 'none';
+  document.getElementById('mode-card-tracking').style.borderColor = mode === 'tracking' ? 'var(--amber)' : 'var(--border)';
+  document.getElementById('mode-card-tracking').style.boxShadow  = mode === 'tracking'  ? '0 0 0 3px rgba(180,83,9,.1)' : 'none';
+
+  // Show/hide selected badge
+  document.getElementById('envelope-selected-badge').style.display = mode === 'envelope' ? 'block' : 'none';
+  document.getElementById('tracking-selected-badge').style.display  = mode === 'tracking'  ? 'block' : 'none';
+
+  // Show settings switch section only for Tracking
+  document.getElementById('tracking-switch-section').style.display = mode === 'tracking' ? 'block' : 'none';
+
+  // Update callout
+  const callout = document.getElementById('mode-choice-callout');
+  const calloutText = document.getElementById('mode-choice-text');
+  if (mode === 'envelope') {
+    callout.className = 'call cs';
+    callout.querySelector('.call-ic').textContent = '📦';
+    calloutText.innerHTML = isAr
+      ? '<strong>اخترت Envelope Budget (الافتراضي).</strong> Actual يبدأ بهذا الأسلوب تلقائياً — لا تغيير في الإعدادات. انتقل للدرس التالي لترى كيف يعمل.'
+      : '<strong>You\'ve chosen Envelope Budget (default).</strong> Actual starts in this mode — no settings change needed. Head to Lesson 03 to see how it works in practice.';
+  } else {
+    callout.className = 'call cw';
+    callout.querySelector('.call-ic').textContent = '⚙️';
+    calloutText.innerHTML = isAr
+      ? '<strong>اخترت Tracking Budget.</strong> ستحتاج لتغيير الإعداد في التطبيق (الإعدادات ← التبديل إلى Tracking mode). راجع الخطوات أدناه، ثم انتقل للدرس التالي.'
+      : '<strong>You\'ve chosen Tracking Budget.</strong> You\'ll need to change one setting in the app (Settings → Switch to tracking budgeting). See the steps below, then head to Lesson 03.';
+  }
+
+  // Update Lesson 03 next bar title & L3 header (sync)
+  const enTitle = mode === 'envelope' ? 'Building Your Budget — Envelope Budget' : 'Building Your Budget — Tracking Budget';
+  const arTitle = mode === 'envelope' ? 'بناء ميزانيتك — Envelope Budget' : 'بناء ميزانيتك — Tracking Budget';
+  const nextTitle = document.getElementById('l3-next-title');
+  if (nextTitle) nextTitle.textContent = isAr ? arTitle : enTitle;
+  const l3Title = document.getElementById('l3-title');
+  if (l3Title) l3Title.textContent = isAr ? arTitle : enTitle;
+
+  // Also sync the L3 toggle to match the choice
+  setL3Mode(mode);
+}
+
+// ── LESSON 3 BUDGET MODE TOGGLE ───────────────────────────────────────────
+let l3Mode = 'envelope'; // default matches Actual default
+
+function setL3Mode(mode) {
+  l3Mode = mode;
+  const isAr = document.body.classList.contains('ar');
+
+  document.getElementById('l3-envelope').style.display = mode === 'envelope' ? 'block' : 'none';
+  document.getElementById('l3-tracking').style.display  = mode === 'tracking'  ? 'block' : 'none';
+
+  const btnE = document.getElementById('btn-envelope');
+  const btnT = document.getElementById('btn-tracking');
+
+  if (mode === 'envelope') {
+    btnE.style.background = 'var(--green)'; btnE.style.color = '#fff'; btnE.style.fontWeight = '700';
+    btnT.style.background = 'transparent';  btnT.style.color = 'var(--ink3)'; btnT.style.fontWeight = '600';
+  } else {
+    btnT.style.background = 'var(--amber)'; btnT.style.color = '#fff'; btnT.style.fontWeight = '700';
+    btnE.style.background = 'transparent';  btnE.style.color = 'var(--ink3)'; btnE.style.fontWeight = '600';
+  }
+
+  // Update L3 page title to match toggle
+  const l3Title = document.getElementById('l3-title');
+  if (l3Title) {
+    const enTitle = mode === 'envelope' ? 'Building Your Budget — Envelope Budget' : 'Building Your Budget — Tracking Budget';
+    const arTitle = mode === 'envelope' ? 'بناء ميزانيتك — Envelope Budget' : 'بناء ميزانيتك — Tracking Budget';
+    l3Title.textContent = isAr ? arTitle : enTitle;
+  }
+}
+
+// ── BILINGUAL TOGGLE ──────────────────────────────────────────────────────
+let currentLang = 'en';
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  const body = document.body;
+  const label = document.getElementById('lang-label');
+  const isAr = currentLang === 'ar';
+
+  // Switch body class, html lang and dir
+  body.classList.toggle('ar', isAr);
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+
+  // Update toggle button label
+  label.textContent = isAr ? '🌐 English' : '🌐 العربية';
+
+  // Swap every [data-ar] element's text
+  document.querySelectorAll('[data-ar]').forEach(el => {
+    // Save original English text on first run
+    if (!el.getAttribute('data-en')) {
+      el.setAttribute('data-en', el.textContent.trim());
+    }
+    el.textContent = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+  });
+
+  // Handle next-btn arrows separately (they contain no child spans)
+  document.querySelectorAll('.next-btn[data-ar-text]').forEach(btn => {
+    if (!btn.getAttribute('data-en-text')) {
+      btn.setAttribute('data-en-text', btn.textContent.trim());
+    }
+    btn.textContent = isAr ? btn.getAttribute('data-ar-text') : btn.getAttribute('data-en-text');
+  });
 }
 </script>
 </body>
