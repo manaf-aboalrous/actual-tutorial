@@ -445,3 +445,71 @@ body.ar .transfer-category-table td {
     overflow-x: auto;
   }
 }
+
+/* ── LESSON OUTLINE PANEL ── */
+/* Single column by default; the outline only appears when there is real gutter
+   space for it. Logical properties keep it on the correct side in Arabic RTL. */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: center;
+}
+.toc { display: none; }
+
+/* Headings are jump targets, so clear the sticky .pnav when scrolled to. */
+#lesson-container h2 { scroll-margin-top: 64px; }
+
+@media (min-width: 1280px) {
+  .layout {
+    grid-template-columns: 240px minmax(0, 990px);
+    gap: 28px;
+    align-items: start;
+    /* Keeps the panel off the window edge at 1280px; the content column's
+       minmax lets it give back a few pixels there instead of overflowing. */
+    padding-inline: 16px;
+  }
+  .toc {
+    display: block;
+    position: sticky;
+    top: 64px;
+    max-height: calc(100vh - 96px);
+    overflow-y: auto;
+    padding: 22px 0 24px;
+    scrollbar-width: thin;
+  }
+  .toc[hidden] { display: none; }
+}
+
+.toc-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink4);
+  padding-inline-start: 13px;
+  margin-bottom: 12px;
+}
+.toc-list { list-style: none; }
+.toc-list li { margin: 0; }
+.toc-list a {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink3);
+  text-decoration: none;
+  padding: 7px 12px;
+  border-inline-start: 2px solid var(--border);
+  transition: color .15s, border-color .15s;
+}
+.toc-list a:hover { color: var(--ink); }
+.toc-list a.active {
+  color: var(--blue);
+  border-inline-start-color: var(--blue);
+  font-weight: 600;
+}
+body.ar .toc-title,
+body.ar .toc-list a {
+  font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
+}
+body.ar .toc-list a { font-size: 13.5px; line-height: 1.7; }

@@ -1,9 +1,9 @@
 <div class="opener">
     <div class="opener-meta">
       <span class="opener-num"><span data-i18n="lesson07.t001">Lesson 07 of 09</span></span>
-      <span class="opener-time"><span data-i18n="lesson07.t002">⏱ 7 min</span></span>
+      <span class="opener-time"><span data-i18n="lesson07.t002">⏱ 12 min</span></span>
     </div>
-    <h1><span data-i18n="lesson07.t003">Rules &amp; Automation: Let Actual Do the Work For You</span></h1>
+    <h1><span data-i18n="lesson07.t003">Rules &amp; Schedules: Let Actual Do the Work For You</span></h1>
     <p class="opener-desc"><span data-i18n="lesson07.t004">Once your transactions are coming in and getting cleaned up correctly, use Rules and Schedules to reduce repetitive work. Rules clean and categorize imported transactions, while Schedules help you see recurring and expected transactions before they happen.</span></p>
   </div>
 
@@ -14,6 +14,8 @@
       <div class="learn-item"><span data-i18n="lesson07.t007">Know how Actual creates rules automatically from your behaviour</span></div>
       <div class="learn-item"><span data-i18n="lesson07.t008">Know how to view, edit, and create rules manually</span></div>
       <div class="learn-item"><span data-i18n="lesson07.t009">Understand rule stages and how Schedules support automation</span></div>
+      <div class="learn-item"><span data-i18n="lesson07.t100">Know when a rule formula is better than a fixed value</span></div>
+      <div class="learn-item"><span data-i18n="lesson07.t129">Be able to create a schedule and know how it matches a real transaction</span></div>
     </div>
   </div>
 
@@ -32,6 +34,10 @@
       <div class="rb-row"><span class="rc" data-i18n="lesson07.t019">Set Category</span><span style="color:var(--ink3)">→</span><span class="rc a" data-i18n="lesson07.t020">Shopping</span></div>
     </div>
     <p style="font-size:13px;color:var(--ink3);margin-top:8px" data-i18n-html="lesson07.t021">This turns <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">AMAZON.COM*5C7QC7MH0 AM 10/26</code> into "Amazon / Shopping" every single time - automatically.</p>
+    <div class="ss" style="margin-top:14px">
+      <img src="https://actualbudget.org/img/rules-custom/custom-rules-imported-payee.webp" alt="Rule editor matching an imported payee" loading="lazy">
+      <div class="ss-cap" data-i18n-html="lesson07.t101"><span class="ss-cap-icon">📍</span>The same rule in the real editor. The stage selector sits at the top, the conditions come next, and the actions follow underneath.</div>
+    </div>
   </div>
 
   <div class="concept">
@@ -44,7 +50,7 @@
     </div>
     <div class="call cs">
       <span class="call-ic">✨</span>
-      <div data-i18n-html="lesson07.t027"><strong>The payoff:</strong> After a month or two of regular use, importing a week's worth of transactions takes about 2 minutes — Actual cleans up the names, assigns categories, and you just review and confirm. This is what makes the system sustainable long-term.</div>
+      <div data-i18n-html="lesson07.t027"><strong>The payoff:</strong> After a month or two of regular use, importing a week's worth of transactions takes about 2 minutes - Actual cleans up the names, assigns categories, and you just review and confirm. This is what makes the system sustainable long-term.</div>
     </div>
   </div>
 
@@ -83,6 +89,10 @@
         <div style="font-size:14px" data-i18n-html="lesson07.t050"><strong>Post-stage runs last, always.</strong> Use this for rules that must override everything else. Most users never need this.</div>
       </div>
     </div>
+    <div class="ss" style="margin-top:16px">
+      <img src="https://actualbudget.org/img/rules-custom/custom-rules-2.webp" alt="Rule editor with the post stage selected" loading="lazy">
+      <div class="ss-cap" data-i18n-html="lesson07.t102"><span class="ss-cap-icon">📍</span>Stage of rule sits at the top of every rule. This one runs at Post so it marks anything from the Venmo or Cash accounts as cleared after all other rules have had their turn.</div>
+    </div>
   </div>
 
   <div class="concept">
@@ -90,10 +100,43 @@
     <h2><span data-i18n="lesson07.t052">Viewing and managing your rules</span></h2>
     <div class="steps">
       <div class="step"><div class="sn">1</div><div class="step-b" data-i18n-html="lesson07.t053"><div class="step-t">Go to More → Rules in the sidebar</div>See all your rules, including the ones Actual created automatically for you.</div></div>
-      <div class="step"><div class="sn">2</div><div class="step-b" data-i18n-html="lesson07.t054"><div class="step-t">Click "edit" on any rule to view it in detail</div>The editor shows a live list of existing transactions that match your conditions — excellent feedback before saving.</div></div>
-      <div class="step"><div class="sn">3</div><div class="step-b" data-i18n-html="lesson07.t055"><div class="step-t">Select transactions and click "Apply actions" to backfill</div>Retroactively apply a rule to past transactions — great for re-categorizing a batch of old records in one click.</div></div>
+      <div class="step"><div class="sn">2</div><div class="step-b" data-i18n-html="lesson07.t054"><div class="step-t">Click "edit" on any rule to view it in detail</div>The editor shows a live list of existing transactions that match your conditions - excellent feedback before saving.</div></div>
+      <div class="step"><div class="sn">3</div><div class="step-b" data-i18n-html="lesson07.t055"><div class="step-t">Select transactions and click "Apply actions" to backfill</div>Retroactively apply a rule to past transactions - great for re-categorizing a batch of old records in one click.</div></div>
     </div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson07.t056"><strong>The rule editor is also a powerful bulk editor.</strong> Create a temporary rule with conditions that match what you want to change, apply actions to selected transactions, then delete the rule. Much faster than editing transactions one by one.</div></div>
+  </div>
+
+  <div class="concept">
+    <span class="concept-tag purple"><span data-i18n="lesson07.t081">New &amp; Experimental</span></span>
+    <h2><span data-i18n="lesson07.t082">Rule formulas: a calculated value instead of a fixed one</span></h2>
+    <p data-i18n="lesson07.t083">Everything above sets a value you typed in advance. Sometimes the right value depends on the transaction itself. Rule formulas let an action calculate what to set, using spreadsheet-style expressions.</p>
+    <p data-i18n-html="lesson07.t084">Turn it on at Settings → Show advanced settings → Experimental features → <strong>Excel formula mode</strong>. In the rule editor, a <strong>ƒ</strong> button appears on Set actions. Click it and that action switches to formula mode. Every formula starts with <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">=</code>.</p>
+
+    <div class="g2" style="margin-top:16px">
+      <div class="mini-card">
+        <div class="mini-card-title" data-i18n="lesson07.t085">What a formula can read</div>
+        <ul class="plain" style="font-size:13px">
+          <li data-i18n-html="lesson07.t086"><code class="kp">amount</code> and <code class="kp">balance</code>, both in cents, where a positive amount means income</li>
+          <li data-i18n-html="lesson07.t087"><code class="kp">date</code> and <code class="kp">today</code>, in YYYY-MM-DD form</li>
+          <li data-i18n-html="lesson07.t088"><code class="kp">notes</code>, <code class="kp">imported_payee</code>, <code class="kp">payee_name</code>, <code class="kp">account_name</code>, <code class="kp">category_name</code></li>
+          <li data-i18n-html="lesson07.t089"><code class="kp">cleared</code> and <code class="kp">reconciled</code>, as true or false</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-title" data-i18n="lesson07.t090">Two examples to start from</div>
+        <ul class="plain" style="font-size:13px">
+          <li data-i18n-html="lesson07.t091">Label the direction of money: <code class="kp">=IF(amount&lt;0, "Expense", "Income")</code></li>
+          <li data-i18n-html="lesson07.t092">Pull in another account's running balance: <code class="kp">=BALANCE_OF("Savings")</code></li>
+          <li data-i18n-html="lesson07.t093">Show cents as a normal amount by dividing: <code class="kp">=amount / 100</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson07.t094">Formula rules can also set <strong>split amounts</strong>, which is the quickest way to peel a fixed tax or fee off every transaction from one payee.</div></div>
+    <div class="call cw">
+      <span class="call-ic">⚠️</span>
+      <div data-i18n-html="lesson07.t095"><strong>Limits worth knowing.</strong> A rule formula is a single line; line breaks are collapsed into spaces. It cannot set the payee, category, or account, because those fields need internal IDs rather than text. Formulas and rule templating are mutually exclusive on the same action, and <strong>templating is now the legacy option</strong>: formulas replaced it.</div>
+    </div>
   </div>
 
   <div class="concept">
@@ -102,7 +145,7 @@
     <p data-i18n="lesson07.t059">Schedules help you see upcoming transactions before they happen: salary, rent, subscriptions, loan payments, or credit card autopay. They can be recurring or one-time, and can be entered automatically or left for manual approval.</p>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/schedules-overview-082e66ce8939714130d2c5af3fa2146a.webp" alt="Schedules overview in Actual" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson07.t060"><span class="ss-cap-icon">📍</span>Schedules overview — recurring or expected transactions appear here so you can see what is coming before it happens.</div>
+      <div class="ss-cap" data-i18n-html="lesson07.t060"><span class="ss-cap-icon">📍</span>Schedules overview - recurring or expected transactions appear here so you can see what is coming before it happens.</div>
     </div>
     <div class="g2" style="margin-top:14px">
       <div class="mini-card">
@@ -116,14 +159,75 @@
     </div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n="lesson07.t071">Start with only three or four schedules: salary, rent, key subscriptions, and card autopay if you use it. Add more when you notice a recurring pattern.</div></div>
   </div>
+
+  <div class="concept">
+    <span class="concept-tag amber"><span data-i18n="lesson07.t103">Action</span></span>
+    <h2><span data-i18n="lesson07.t104">Creating a schedule: the fields that matter</span></h2>
+    <p data-i18n="lesson07.t105">The schedule dialog looks busy, but only a few fields change how it behaves. The rest is naming and bookkeeping.</p>
+    <div class="ss" style="margin-top:14px">
+      <img src="https://actualbudget.org/img/schedules/schedules-from-transaction-add-as-usual.webp" alt="Schedule editor with a repeating monthly schedule" loading="lazy">
+      <div class="ss-cap" data-i18n-html="lesson07.t106"><span class="ss-cap-icon">📍</span>A monthly internet bill. <strong>Repeats</strong> turns the date into a frequency, the next three occurrences are previewed underneath, and existing transactions that match are offered for linking when you save.</div>
+    </div>
+    <div class="g2" style="margin-top:14px">
+      <div class="mini-card">
+        <div class="mini-card-title" data-i18n="lesson07.t107">Date and Repeats</div>
+        <p style="font-size:13px;color:var(--ink2)" data-i18n-html="lesson07.t108">Leave <strong>Repeats</strong> off for a one-time expected transaction. Turn it on and the Date field becomes a frequency: monthly, every two months, every two years, or specific days you pick with the <strong>+</strong> button. That last option handles things like three phone lines billed on different days under a single schedule.</p>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-title" data-i18n="lesson07.t109">Amount</div>
+        <p style="font-size:13px;color:var(--ink2)" data-i18n-html="lesson07.t110">The dropdown next to the amount offers <strong>is exactly</strong>, <strong>is approximately</strong>, or a range between two figures. Approximate matches anything within 7.5% either way, so a 100 bill matches between 92.50 and 107.50. That is usually enough for utilities, and the Schedules list marks these with a tilde.</p>
+      </div>
+    </div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson07.t111">If a due date lands on a weekend, <strong>Move schedule</strong> shifts it to the working day before or after. Schedules do not know about public holidays, so those still need a manual nudge.</div></div>
+    <div class="call cw" style="margin-top:14px">
+      <span class="call-ic">⚠️</span>
+      <div data-i18n-html="lesson07.t112"><strong>Automatically add transaction is the one decision to think about.</strong> Leave it off and the schedule shows up as an upcoming reminder that you approve when the real transaction arrives. Turn it on and Actual posts the transaction on every scheduled date whether or not the money actually moved. Auto-add suits fixed, reliable payments like a mortgage. For anything variable, manual approval keeps your balance honest.</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <span class="concept-tag green"><span data-i18n="lesson07.t113">Three ways in</span></span>
+    <h2><span data-i18n="lesson07.t114">You rarely need to build one from scratch</span></h2>
+    <div class="steps">
+      <div class="step"><div class="sn">A</div><div class="step-b"><div class="step-t"><span data-i18n="lesson07.t115">Let Actual find them for you</span></div><span data-i18n="lesson07.t116">Click "Find schedules" at the bottom of the Schedules page and Actual scans your history for anything that looks recurring, then offers to create each one. This is the fastest way to set up after a few months of data.</span></div></div>
+      <div class="step"><div class="sn">B</div><div class="step-b"><div class="step-t"><span data-i18n="lesson07.t117">Build one from a transaction you already have</span></div><span data-i18n="lesson07.t118">Tick a transaction in the account, then choose "Link schedule" from the menu at the top right and pick "Create New". Every field arrives prefilled from that transaction, so you only adjust the frequency.</span></div></div>
+      <div class="step"><div class="sn g">C</div><div class="step-b"><div class="step-t"><span data-i18n="lesson07.t119">Add a new schedule by hand</span></div><span data-i18n="lesson07.t120">Use "Add new schedule" on the Schedules page for anything that has not happened yet, such as a subscription starting next month.</span></div></div>
+    </div>
+    <div class="ss" style="margin-top:4px">
+      <img src="https://actualbudget.org/img/schedules/schedules-find-matches.webp" alt="Found Schedules dialog suggesting recurring transactions" loading="lazy">
+      <div class="ss-cap" data-i18n-html="lesson07.t121"><span class="ss-cap-icon">📍</span>Found Schedules suggests recurring patterns and shows the frequency it detected. If something you expected is missing, the payee names probably differ across those transactions, which is exactly what the payee cleanup in Lesson 06 fixes.</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <span class="concept-tag blue"><span data-i18n="lesson07.t122">Concept</span></span>
+    <h2><span data-i18n="lesson07.t123">How a schedule finds its real transaction</span></h2>
+    <p data-i18n-html="lesson07.t124">A schedule is a prediction until a real transaction matches it. The rule to remember is the date: it has to fall <strong>within two days either side</strong> of the scheduled date. Keeping the payee name consistent matters too, since a schedule is tied to its payee.</p>
+    <p data-i18n="lesson07.t125">This trips people up when a biller takes the money early. If your power bill is scheduled for the 15th but the company collects on the 10th, the posted transaction sits outside the window and the schedule keeps showing as upcoming, as though the bill were still to come.</p>
+    <p data-i18n-html="lesson07.t126">The cleanest fix is to link them yourself: select the posted transaction, choose <strong>Link schedule</strong> from the menu at the top right or press <kbd>S</kbd>, then pick the schedule it belongs to. If you would rather not, select the upcoming entry and choose <strong>Skip scheduled date</strong>, or leave it and let the next occurrence match normally.</p>
+    <div class="ss" style="margin-top:14px">
+      <img src="https://actualbudget.org/img/schedules/schedules-account-register.webp" alt="Account register showing upcoming and due scheduled transactions" loading="lazy">
+      <div class="ss-cap" data-i18n-html="lesson07.t127"><span class="ss-cap-icon">📍</span>Scheduled items sit at the top of the account register in italics, tagged <strong>Upcoming</strong> or <strong>Due</strong>, above your real transactions. This is the payoff: you can see what is coming before it lands.</div>
+    </div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson07.t097">How far ahead they appear is the <strong>upcoming length</strong>, set from the Schedules page and overridable per schedule. An annual insurance renewal can show a month out while everyday bills stay at a week. This changes what you see, not what is budgeted.</div></div>
+    <div class="call ci">
+      <span class="call-ic">🔗</span>
+      <div data-i18n-html="lesson07.t128"><strong>Schedules and Rules meet here.</strong> Open a schedule and click <strong>Edit as rule</strong> to see the rule behind it, already carrying the date, frequency, and account as conditions. Add a category and a note there and every future entry from that schedule arrives fully filled in.</div>
+    </div>
+    <div class="call ci">
+      <span class="call-ic">🔗</span>
+      <div data-i18n-html="lesson07.t098"><strong>Schedules and Budget Automation work together.</strong> The "Cover schedule" automation from Lesson 03 budgets straight from a schedule, either saving up for the next occurrence or covering it in the month it lands. Automations reference schedules by ID, so renaming a schedule no longer breaks the link.</div>
+    </div>
+  </div>
   <div class="concept">
     <span class="concept-tag blue"><span data-i18n="lesson07.t072">Official Docs</span></span>
     <h2><span data-i18n="lesson07.t073">Read later</span></h2>
     <ul class="plain">
-      <li data-i18n-html="lesson07.t074"><a href="https://actualbudget.org/docs/budgeting/rules/" target="_blank" rel="noopener noreferrer">Rules</a> — conditions, fields, stages, and automatic rules</li>
-      <li data-i18n-html="lesson07.t075"><a href="https://actualbudget.org/docs/budgeting/rules/custom/" target="_blank" rel="noopener noreferrer">Rules Examples</a> — custom rules and Bank Sync transfer examples</li>
-      <li data-i18n-html="lesson07.t076"><a href="https://actualbudget.org/docs/schedules/" target="_blank" rel="noopener noreferrer">Schedules</a> — recurring and expected transactions</li>
-      <li data-i18n-html="lesson07.t077"><a href="https://actualbudget.org/docs/experimental/rule-templating/" target="_blank" rel="noopener noreferrer">Rule Action Templating</a> — experimental advanced rule actions</li>
+      <li data-i18n-html="lesson07.t074"><a href="https://actualbudget.org/docs/budgeting/rules/" target="_blank" rel="noopener noreferrer">Rules</a> - conditions, fields, stages, and automatic rules</li>
+      <li data-i18n-html="lesson07.t075"><a href="https://actualbudget.org/docs/budgeting/rules/custom/" target="_blank" rel="noopener noreferrer">Rules Examples</a> - custom rules and Bank Sync transfer examples</li>
+      <li data-i18n-html="lesson07.t076"><a href="https://actualbudget.org/docs/schedules/" target="_blank" rel="noopener noreferrer">Schedules</a> - recurring and expected transactions</li>
+      <li data-i18n-html="lesson07.t099"><a href="https://actualbudget.org/docs/experimental/formulas" target="_blank" rel="noopener noreferrer">Formulas</a>: rule formulas and Formula cards, including the full function list</li>
+      <li data-i18n-html="lesson07.t077"><a href="https://actualbudget.org/docs/experimental/rule-templating/" target="_blank" rel="noopener noreferrer">Rule Action Templating</a>: the legacy approach, now deprecated in favour of formulas</li>
     </ul>
   </div>
 

@@ -1,6 +1,7 @@
 import { initI18n, initLanguageSelector, applyTranslations } from './i18n.js';
 import { loadLesson } from './lesson-loader.js';
 import { initNavigation, initLessonInteractions, syncBudgetModeUI } from './navigation.js';
+import { buildToc } from './toc.js';
 
 let navigation;
 
@@ -8,6 +9,7 @@ async function showLesson(index) {
   const lesson = await loadLesson(index);
   applyTranslations(lesson);
   initLessonInteractions(lesson, navigation.go);
+  buildToc();
 }
 
 async function boot() {
@@ -23,7 +25,12 @@ async function boot() {
   document.addEventListener('actualtutorial:languagechange', () => {
     applyTranslations(document);
     syncBudgetModeUI(document);
+    buildToc();
   });
+
+  // Lesson 03 swaps between its Envelope and Tracking branches, which changes
+  // which headings are on screen.
+  document.addEventListener('actualtutorial:contentchange', () => buildToc());
 }
 
 document.addEventListener('DOMContentLoaded', () => {

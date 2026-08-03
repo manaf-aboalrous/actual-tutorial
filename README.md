@@ -9,6 +9,8 @@ The tutorial walks through Actual Budget's core workflows in 9 short lessons:
 - Credit cards, transactions, rules, and reports
 - Keyboard shortcuts, tips, and common workflow questions
 
+Content is current as of Actual Budget 26.8.0 (August 2026). When refreshing it, start from the [release notes](https://actualbudget.org/docs/releases).
+
 Live site:
 
 [https://x-rous.github.io/actual-tutorial/](https://x-rous.github.io/actual-tutorial/)

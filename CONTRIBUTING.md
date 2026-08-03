@@ -126,6 +126,15 @@ Keep Actual Budget product and UI terms in English when translating them could m
 - Desktop Client
 - Self-Hosted / Cloud Server
 - GitHub Pages
+- Budget Automation
+- Budget Templates
+- Excel formula mode
+- Formula card
+- Balance Forecast
+- Sankey
+- Age of Money
+- Crossover Point
+- Payee Locations
 
 It is fine to explain a term in the target language while keeping the original UI term.
 

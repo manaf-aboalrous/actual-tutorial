@@ -1,7 +1,7 @@
 <div class="opener">
     <div class="opener-meta">
       <span class="opener-num"><span data-i18n="lesson06.t001">Lesson 06 of 09</span></span>
-      <span class="opener-time"><span data-i18n="lesson06.t002">⏱ 10 min</span></span>
+      <span class="opener-time"><span data-i18n="lesson06.t002">⏱ 12 min</span></span>
     </div>
     <h1><span data-i18n="lesson06.t003">Transactions: Getting Data Into Actual</span></h1>
     <p class="opener-desc"><span data-i18n="lesson06.t004">Actual is only as useful as the transaction data inside it. This lesson covers how transactions get in, what each row means, splits, payees, tags, filters, duplicates, and reconciliation so your data stays trustworthy.</span></p>
@@ -27,9 +27,10 @@
         <div class="mini-card-title" data-i18n="lesson06.t013">🔗 Bank Sync</div>
         <p style="font-size:13px;color:var(--ink2);margin-bottom:10px" data-i18n="lesson06.t014">Connect through a supported provider, then click Bank Sync when you want to fetch new transactions.</p>
         <div style="display:flex;flex-wrap:wrap;gap:4px">
-          <span class="badge bb" data-i18n="lesson06.t015">SimpleFIN (US/CA)</span>
-          <span class="badge bb" data-i18n="lesson06.t016">GoCardless (existing EU/UK)</span>
+          <span class="badge bb" data-i18n="lesson06.t015">SimpleFIN (North America)</span>
           <span class="badge bb" data-i18n="lesson06.t017">Pluggy.ai (BR)</span>
+          <span class="badge bb" data-i18n="lesson06.t017a">Akahu (New Zealand)</span>
+          <span class="badge bb" data-i18n="lesson06.t017b">Enable Banking (Europe)</span>
         </div>
       </div>
       <div class="mini-card">
@@ -50,7 +51,7 @@
         <p style="font-size:12px;color:var(--ink3);margin-top:8px" data-i18n-html="lesson06.t023">Account → <strong>Add New</strong></p>
       </div>
     </div>
-    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t024"><strong>Why is OFX better than CSV?</strong> OFX files include a unique bank-assigned ID for every transaction. Actual uses this ID to automatically detect duplicates — meaning you can safely import the same time period twice without getting duplicate entries. CSV files don't have this, so duplicate detection is less reliable.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t024"><strong>Why is OFX better than CSV?</strong> OFX files include a unique bank-assigned ID for every transaction. Actual uses this ID to automatically detect duplicates - meaning you can safely import the same time period twice without getting duplicate entries. CSV files don't have this, so duplicate detection is less reliable.</div></div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t024a"><strong>Migrating from another budget app?</strong> Actual has migration guides for <a href="https://actualbudget.org/docs/migration/ynab4/" target="_blank" rel="noopener noreferrer">YNAB4</a> and <a href="https://actualbudget.org/docs/migration/nynab/" target="_blank" rel="noopener noreferrer">nYNAB</a>. Community migration tools are also listed for <a href="https://github.com/NikxDa/actual-moneymoney" target="_blank" rel="noopener noreferrer">MoneyMoney</a> and <a href="https://github.com/slimslickner/quicken-mac-to-actual-budget" target="_blank" rel="noopener noreferrer">Quicken on Mac</a>.</div></div>
   </div>
 
@@ -61,7 +62,7 @@
     <div class="g2" style="margin-top:14px">
       <div class="mini-card">
         <div class="mini-card-title" data-i18n="lesson06.t028">When it fits</div>
-        <ul class="plain" style="font-size:13px"><li data-i18n="lesson06.t029">You use the desktop app with its local server, or an actual-server setup</li><li data-i18n="lesson06.t030">Your bank is supported through SimpleFIN, Pluggy.ai, or GoCardless for existing users</li><li data-i18n="lesson06.t031">You want a faster weekly routine than downloading files manually</li></ul>
+        <ul class="plain" style="font-size:13px"><li data-i18n="lesson06.t029">You use the desktop app with its local server, or an actual-server setup</li><li data-i18n="lesson06.t030">Your bank is supported through SimpleFIN, Pluggy.ai, Akahu, or Enable Banking</li><li data-i18n="lesson06.t031">You want a faster weekly routine than downloading files manually</li></ul>
       </div>
       <div class="mini-card">
         <div class="mini-card-title" data-i18n="lesson06.t032">What to watch</div>
@@ -69,6 +70,13 @@
       </div>
     </div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n="lesson06.t036">For a calmer start, create the account with a correct balance on a recent date, then enable Bank Sync. Reconciliation is easier when only new transactions arrive after your start point.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t036a"><strong>Bank Sync needs one-time setup.</strong> It requires a server (the desktop app's bundled server or an actual-server) plus your own provider credentials/config; it isn't just "click connect." Sync is manual: you click Bank Sync to fetch. Note that bank-sync tokens are not covered by end-to-end encryption, so a server admin with database access could read them.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t115">The provider setup and account linking screens were redesigned, and if a sync fails the error status now stays visible across your devices instead of disappearing on reload. Pluggy.ai users can also choose whether credentials are stored for the whole server or just one budget file.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t126"><strong>Check the cost before you rely on it.</strong> The sync providers are independent services with their own terms, and some of them charge a subscription. Look at the provider's own pricing before building a routine around it. File import always stays free, so nothing here blocks you from using Actual fully.</div></div>
+    <div class="call ci" style="margin-top:14px">
+      <span class="call-ic">🇦🇺</span>
+      <div data-i18n-html="lesson06.t127"><strong>In Australia?</strong> There is no official Australian provider, but the third-party service <a href="https://redbark.com/blog/sync-australian-banks-to-actual-budget" target="_blank" rel="noopener noreferrer">Redbark</a> connects Australian banks to Actual through SimpleFIN. Their guide walks through the setup.</div>
+    </div>
   </div>
 
   <div class="concept">
@@ -79,11 +87,12 @@
       <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t" data-i18n="lesson06.t040">In Actual: open the account → click Import → select the file</div></div></div>
       <div class="step"><div class="sn">3</div><div class="step-b" data-i18n-html="lesson06.t041"><div class="step-t">Map CSV columns to Actual's fields</div>Tell Actual which column in your CSV is the Date, which is the Payee name, and which is the Amount. The live preview shows how Actual will interpret each row.</div></div>
       <div class="step"><div class="sn">4</div><div class="step-b" data-i18n-html="lesson06.t042"><div class="step-t">Fix date format if dates look wrong</div>Try different format options (DD/MM/YYYY vs MM/DD/YYYY). If expenses show as positive numbers, toggle "Flip amount."</div></div>
-      <div class="step"><div class="sn g">5</div><div class="step-b" data-i18n-html="lesson06.t043"><div class="step-t">Click Import</div>Actual automatically avoids duplicating transactions it has already seen.</div></div>
+      <div class="step"><div class="sn">5</div><div class="step-b" data-i18n-html="lesson06.t116"><div class="step-t">Set "Only import transactions since" if the file goes too far back</div>Bank downloads often include more history than you want. This option in the import dialog cuts everything before a date you choose, which keeps your opening balance meaningful.</div></div>
+      <div class="step"><div class="sn g">6</div><div class="step-b" data-i18n-html="lesson06.t043"><div class="step-t">Click Import</div>Actual automatically avoids duplicating transactions it has already seen.</div></div>
     </div>
     <div class="ss" style="margin-top:4px">
       <img src="https://actualbudget.org/assets/images/import-csv@2x-42bca3494cf33b441a324725857200c2.webp" alt="CSV import screen" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t044"><span class="ss-cap-icon">📍</span>The CSV import screen — map each column to the right field. The preview shows how Actual will interpret the data before you commit.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t044"><span class="ss-cap-icon">📍</span>The CSV import screen - map each column to the right field. The preview shows how Actual will interpret the data before you commit.</div>
     </div>
   </div>
 
@@ -94,14 +103,16 @@
     <div class="g2" style="margin-top:16px">
       <div class="mini-card">
         <div class="mini-card-title" data-i18n="lesson06.t048">Core fields</div>
-        <ul class="plain" style="font-size:13px"><li data-i18n="lesson06.t049">Date — when the transaction happened</li><li data-i18n="lesson06.t050">Account — where the money moved</li><li data-i18n="lesson06.t051">Payee — merchant, person, or transfer account</li><li data-i18n="lesson06.t052">Amount — inflow or outflow</li></ul>
+        <ul class="plain" style="font-size:13px"><li data-i18n="lesson06.t049">Date - when the transaction happened</li><li data-i18n="lesson06.t050">Account - where the money moved</li><li data-i18n="lesson06.t051">Payee - merchant, person, or transfer account</li><li data-i18n="lesson06.t052">Amount - inflow or outflow</li></ul>
       </div>
       <div class="mini-card">
         <div class="mini-card-title" data-i18n="lesson06.t053">Organization fields</div>
-        <ul class="plain" style="font-size:13px"><li data-i18n="lesson06.t054">Category — where spending appears in the budget</li><li data-i18n="lesson06.t055">Notes — extra detail or #tags</li><li data-i18n="lesson06.t056">Cleared — has it appeared at the bank?</li><li data-i18n="lesson06.t057">Imported Payee — original bank-provided name</li></ul>
+        <ul class="plain" style="font-size:13px"><li data-i18n="lesson06.t054">Category - where spending appears in the budget</li><li data-i18n="lesson06.t055">Notes - extra detail or #tags</li><li data-i18n="lesson06.t056">Cleared - has it appeared at the bank?</li><li data-i18n="lesson06.t057">Imported Payee - original bank-provided name</li></ul>
       </div>
     </div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n="lesson06.t058">Your simple routine: review new transactions, clean the payee when needed, choose the category, then let Rules learn from your decisions.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t058a"><strong>Quick math:</strong> in any amount field you can type an expression like <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">16.99*1.1</code> and Actual will calculate the result for you.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t123">Transactions that share a date can be reordered by <strong>dragging</strong> them, which is useful when several entries land on the same day and you want them to read in the order they actually happened.</div></div>
   </div>
 
   <div class="concept">
@@ -110,13 +121,15 @@
     <p data-i18n="lesson06.t061">Sometimes one bank transaction contains multiple kinds of spending. Example: one supermarket trip includes groceries, household supplies, and a gift. Instead of creating separate transactions, split the transaction into child lines, each with its own category and amount.</p>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/split-transactions-buttons-b367a120837aa3fcced86cb71872a1ec.png" alt="Split transaction controls in Actual" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t062"><span class="ss-cap-icon">📍</span>Split Transaction controls — add split lines, distribute the remainder, or unsplit when needed.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t062"><span class="ss-cap-icon">📍</span>Split Transaction controls - add split lines, distribute the remainder, or unsplit when needed.</div>
     </div>
     <div class="steps">
       <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t" data-i18n="lesson06.t063">Open the transaction's Category and choose Split Transaction</div><span data-i18n="lesson06.t064">A child row appears under the original transaction.</span></div></div>
       <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t" data-i18n="lesson06.t065">Add split lines as needed</div><span data-i18n="lesson06.t066">Give each part its own category and amount.</span></div></div>
       <div class="step"><div class="sn g">3</div><div class="step-b"><div class="step-t" data-i18n="lesson06.t067">Make sure the total equals the original transaction</div><span data-i18n="lesson06.t068">The child rows must add up to the parent transaction amount.</span></div></div>
     </div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t117"><strong>Let Actual do the arithmetic with Distribute.</strong> If at least one split line has no amount yet, Distribute divides the remainder <strong>evenly</strong> among the empty lines. If every line already has an amount, it distributes the remainder <strong>proportionally</strong> to the amounts you entered, which is the right behaviour for spreading a tax or a delivery fee across the things you bought. Leftover cents are handed out one at a time so the total always matches.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t118">Changed your mind? Right-click to <strong>unsplit</strong> selected lines, or unsplit the parent to turn every child back into a standalone transaction.</div></div>
     <div class="call cw"><span class="call-ic">⚠️</span><div data-i18n="lesson06.t069">Be careful with bulk editing split transactions. If you need to change one, open the split so you can see each child line clearly.</div></div>
   </div>
 
@@ -125,7 +138,7 @@
     <h2><span data-i18n="lesson06.t071">Payees, tags, and bulk editing</span></h2>
     <p data-i18n="lesson06.t072">Three features that make managing transactions much faster once you have real data coming in.</p>
 
-    <h3 style="margin-top:18px" data-i18n="lesson06.t073">Payees — cleaning up ugly bank names</h3>
+    <h3 style="margin-top:18px" data-i18n="lesson06.t073">Payees - cleaning up ugly bank names</h3>
     <p style="font-size:14px;color:var(--ink2)" data-i18n-html="lesson06.t074">Banks give payees names like <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px;font-size:12px">TARGET DEBIT CRD ACH TRAN CO ID:XXX15170</code>. From More → Payees, you can rename them, merge duplicates, and set default categories. Actual also learns from your renaming and creates Rules automatically - so you only clean up each payee once.</p>
     <div class="ss" style="margin-top:10px">
       <img src="https://actualbudget.org/assets/images/MergePayeesSearch-7d231695827abe064e24b6fb19431c8a.webp" alt="Searching payees" loading="lazy">
@@ -133,21 +146,28 @@
     </div>
     <div class="ss">
       <img src="https://actualbudget.org/assets/images/PayeesMerged-3fee2f20fe2bd8d44c7cc38c1cbb1e2a.webp" alt="After merging payees" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t076"><span class="ss-cap-icon">📍</span>After merging — all variations become one payee. Click the name to rename it to something clean like "Morrisons."</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t076"><span class="ss-cap-icon">📍</span>After merging - all variations become one payee. Click the name to rename it to something clean like "Morrisons."</div>
+    </div>
+    <div class="call ci" style="margin-top:12px">
+      <span class="call-ic">📍</span>
+      <div data-i18n-html="lesson06.t122"><strong>Payee Locations (phone only).</strong> When you enter a transaction on your phone, you can tap Save on a payee to remember where you are standing. Next time you are within about 500 metres, that payee appears under <strong>Nearby Payees</strong> in the autocomplete, which makes entering cash spending at the same few shops much faster. Your location is captured only when you tap Save, it is stored inside your own budget file and synced only to your own devices, and the browser needs an HTTPS connection plus permission to share location. Tap Forget at the same spot to remove it.</div>
     </div>
 
-    <h3 style="margin-top:20px" data-i18n="lesson06.t077">Tags — cross-category labels</h3>
+    <h3 style="margin-top:20px" data-i18n="lesson06.t077">Tags - cross-category labels</h3>
     <p style="font-size:14px;color:var(--ink2)" data-i18n="lesson06.t078">Add #hashtags to any transaction's Notes field to group transactions that cross categories. Useful for tracking the real cost of a holiday (flights in Transport, hotels in Accommodation, meals in Eating Out - all tagged #spain2025).</p>
     <div class="ss" style="margin-top:10px">
       <img src="https://actualbudget.org/assets/images/input-b5149fdbf17deb4328ed2b41ce9c803c.webp" alt="Adding a tag" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t079"><span class="ss-cap-icon">📍</span>Type # in the Notes field to add a tag — you'll see autocomplete for existing tags.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t079"><span class="ss-cap-icon">📍</span>Type # in the Notes field to add a tag - you'll see autocomplete for existing tags.</div>
     </div>
     <div class="ss">
       <img src="https://actualbudget.org/assets/images/manage-dbb35481174f7376ca1a4de94692917e.webp" alt="Tag management page" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t080"><span class="ss-cap-icon">📍</span>The Tags management page (sidebar) — assign colours to tags and view all transactions for any tag.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t080"><span class="ss-cap-icon">📍</span>The Tags management page (sidebar) - assign colours to tags and view all transactions for any tag.</div>
     </div>
+    <p style="font-size:14px;color:var(--ink2);margin-top:10px" data-i18n-html="lesson06.t119">The management page under More → Tags has grown. You can create a tag before using it, give it a <strong>colour</strong> and a <strong>description</strong>, search the tags already in use, hide the ones you no longer want cluttering autocomplete, and act on several at once. Deleting a tag here removes it from the list, not from the notes of past transactions.</p>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t120"><strong>Two rules that catch people out.</strong> Tags cannot contain spaces, so use <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">#spain2025</code>, <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">#car-repairs</code>, or camelCase. They are also case-sensitive, so <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">#Spain</code> and <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">#spain</code> are different tags. If you want a literal hash in a note, type <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">##</code>.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t121">When filtering, the Notes field offers <strong>has any tag</strong> and <strong>has all tags</strong>, so you can find everything tagged for a trip, or only the transactions carrying two specific tags together.</div></div>
 
-    <h3 style="margin-top:20px" data-i18n="lesson06.t081">Bulk editing — update many transactions at once</h3>
+    <h3 style="margin-top:20px" data-i18n="lesson06.t081">Bulk editing - update many transactions at once</h3>
     <p style="font-size:14px;color:var(--ink2)" data-i18n="lesson06.t082">Check the box on the left of multiple transactions, then use the toolbar to change category, payee, notes, account, or delete them all at once. Use Filters first to narrow down to exactly what you want to change.</p>
     <div class="call cw">
       <span class="call-ic">⚠️</span>
@@ -160,15 +180,15 @@
     <p data-i18n="lesson06.t086">The Filter button above any transaction list lets you narrow what you see using multiple stacked conditions. This is far more powerful than text search - you can combine date ranges, categories, amounts, payees, and tags.</p>
     <div class="ss" style="margin-top:12px">
       <img src="https://actualbudget.org/assets/images/filter-d3be3a9ef5f5e1206279bea9c92aa2a0.webp" alt="Filter dropdown" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t087"><span class="ss-cap-icon">📍</span>The Filter dropdown — choose from date, category, payee, amount, account, notes, and tags. Combine as many as you need.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t087"><span class="ss-cap-icon">📍</span>The Filter dropdown - choose from date, category, payee, amount, account, notes, and tags. Combine as many as you need.</div>
     </div>
     <div class="ss">
       <img src="https://actualbudget.org/assets/images/multiple-filters-699119cc4ced089d989907cda05a48d5.webp" alt="Stacked filters" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t088"><span class="ss-cap-icon">📍</span>Multiple stacked filters — here filtering by a #tag + category + year to find the total cost of running a specific car in 2024.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t088"><span class="ss-cap-icon">📍</span>Multiple stacked filters - here filtering by a #tag + category + year to find the total cost of running a specific car in 2024.</div>
     </div>
     <div class="ss">
       <img src="https://actualbudget.org/assets/images/save-filter-ff460fe40595ef931731e20501027bc7.webp" alt="Save filter" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t089"><span class="ss-cap-icon">📍</span>Save filters you use regularly — click "Unsaved filter" → "Save new filter" to give it a name.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t089"><span class="ss-cap-icon">📍</span>Save filters you use regularly - click "Unsaved filter" → "Save new filter" to give it a name.</div>
     </div>
   </div>
 
@@ -182,7 +202,7 @@
     </div>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/merge-g-ca6d56c44c431f15a362d572e2ab8d70.webp" alt="Merge transactions" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t095"><span class="ss-cap-icon">📍</span>Select two matching transactions and press G — Actual merges them into one, keeping the most reliable version.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t095"><span class="ss-cap-icon">📍</span>Select two matching transactions and press G - Actual merges them into one, keeping the most reliable version.</div>
     </div>
   </div>
   <div class="concept">
@@ -191,30 +211,32 @@
     <p data-i18n="lesson06.t098">Reconciliation is the habit of comparing Actual's transaction list to your official bank statement and confirming they match. It catches missing transactions, accidental duplicates, and amounts you may have mistyped.</p>
     <div class="how">
       <div class="how-title"><span data-i18n="lesson06.t099">In Actual this looks like…</span></div>
-      <p data-i18n-html="lesson06.t100">Click the 🔒 lock icon in the top-right of any account. Enter your current bank balance, then click <strong>Reconcile</strong>. Actual shows you a "Difference" number. Go through transactions ticking the ones that appear on your statement (grey circle = unconfirmed, green = confirmed). When Difference reaches $0, click <strong>Lock transactions</strong> to lock the matched transactions.</p>
+      <p data-i18n-html="lesson06.t100">Click the 🔒 lock icon in the top-right of any account. Enter your current bank balance, then click <strong>Reconcile</strong>. Actual shows you a "Difference" number. Go through transactions ticking the ones that appear on your statement (grey circle = unconfirmed, green = confirmed). When Difference reaches $0, click <strong>Lock transactions</strong> to lock the matched transactions. If the Difference won't reach $0, Actual can create a reconciliation (balancing) transaction for the gap so you aren't stuck hunting a few cents.</p>
     </div>
     <div class="ss" style="margin-top:14px">
       <img src="https://actualbudget.org/assets/images/reconcile-1-96dc7a0b08844e80466b75acd3d337c9.webp" alt="Reconciliation account header" loading="lazy">
-      <div class="ss-cap" data-i18n-html="lesson06.t101"><span class="ss-cap-icon">📍</span>Click the green balance in the account header to see Cleared vs Uncleared totals — helps you know where the discrepancy is before you start reconciling.</div>
+      <div class="ss-cap" data-i18n-html="lesson06.t101"><span class="ss-cap-icon">📍</span>Click the green balance in the account header to see Cleared vs Uncleared totals - helps you know where the discrepancy is before you start reconciling.</div>
     </div>
-    <div class="tip"><span class="tip-ic">💡</span><div data-i18n="lesson06.t102">You don't need to reconcile every day. Once a month is fine for most people — just make sure you do it at least monthly if you import transactions manually.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n="lesson06.t102">You don't need to reconcile every day. Once a month is fine for most people - just make sure you do it at least monthly if you import transactions manually.</div></div>
   </div>
 
   <div class="concept">
     <span class="concept-tag blue"><span data-i18n="lesson06.t103">Official Docs</span></span>
     <h2><span data-i18n="lesson06.t104">Read later</span></h2>
     <ul class="plain">
-      <li data-i18n-html="lesson06.t105"><a href="https://actualbudget.org/docs/transactions/importing/" target="_blank" rel="noopener noreferrer">Importing Transactions</a> — Bank Sync, file import, CSV, and manual entry</li>
-      <li data-i18n-html="lesson06.t106"><a href="https://actualbudget.org/docs/advanced/bank-sync/" target="_blank" rel="noopener noreferrer">Connecting Your Bank</a> — Bank Sync and supported providers</li>
-      <li data-i18n-html="lesson06.t107"><a href="https://actualbudget.org/docs/transactions/merging/" target="_blank" rel="noopener noreferrer">Merging Duplicate Transactions</a> — duplicate merging and kept-transaction logic</li>
-      <li data-i18n-html="lesson06.t108"><a href="https://actualbudget.org/docs/transactions/split-transactions/" target="_blank" rel="noopener noreferrer">Split Transactions</a> — splitting one transaction across categories</li>
-      <li data-i18n-html="lesson06.t109"><a href="https://actualbudget.org/docs/transactions/payees/" target="_blank" rel="noopener noreferrer">Payees</a>, <a href="https://actualbudget.org/docs/transactions/tags/" target="_blank" rel="noopener noreferrer">Tags</a>, <a href="https://actualbudget.org/docs/transactions/bulk-editing/" target="_blank" rel="noopener noreferrer">Bulk Actions</a>, and <a href="https://actualbudget.org/docs/transactions/filters/" target="_blank" rel="noopener noreferrer">Filters</a> — transaction cleanup and management tools</li>
-      <li data-i18n-html="lesson06.t110"><a href="https://actualbudget.org/docs/accounts/reconciliation/" target="_blank" rel="noopener noreferrer">Reconciliation</a> — matching accounts and locking transactions</li>
-      <li data-i18n-html="lesson06.t111"><a href="https://actualbudget.org/docs/transactions/transfers/" target="_blank" rel="noopener noreferrer">Transfers</a> — important when importing both sides of a transfer</li>
+      <li data-i18n-html="lesson06.t105"><a href="https://actualbudget.org/docs/transactions/importing/" target="_blank" rel="noopener noreferrer">Importing Transactions</a> - Bank Sync, file import, CSV, and manual entry</li>
+      <li data-i18n-html="lesson06.t106"><a href="https://actualbudget.org/docs/advanced/bank-sync/" target="_blank" rel="noopener noreferrer">Connecting Your Bank</a> - Bank Sync and supported providers</li>
+      <li data-i18n-html="lesson06.t107"><a href="https://actualbudget.org/docs/transactions/merging/" target="_blank" rel="noopener noreferrer">Merging Duplicate Transactions</a> - duplicate merging and kept-transaction logic</li>
+      <li data-i18n-html="lesson06.t108"><a href="https://actualbudget.org/docs/transactions/split-transactions/" target="_blank" rel="noopener noreferrer">Split Transactions</a> - splitting one transaction across categories</li>
+      <li data-i18n-html="lesson06.t109"><a href="https://actualbudget.org/docs/transactions/payees/" target="_blank" rel="noopener noreferrer">Payees</a>, <a href="https://actualbudget.org/docs/transactions/tags/" target="_blank" rel="noopener noreferrer">Tags</a>, <a href="https://actualbudget.org/docs/transactions/bulk-editing/" target="_blank" rel="noopener noreferrer">Bulk Actions</a>, and <a href="https://actualbudget.org/docs/transactions/filters/" target="_blank" rel="noopener noreferrer">Filters</a> - transaction cleanup and management tools</li>
+      <li data-i18n-html="lesson06.t110"><a href="https://actualbudget.org/docs/accounts/reconciliation/" target="_blank" rel="noopener noreferrer">Reconciliation</a> - matching accounts and locking transactions</li>
+      <li data-i18n-html="lesson06.t111"><a href="https://actualbudget.org/docs/transactions/transfers/" target="_blank" rel="noopener noreferrer">Transfers</a> - important when importing both sides of a transfer</li>
+      <li data-i18n-html="lesson06.t124"><a href="https://actualbudget.org/docs/transactions/tags" target="_blank" rel="noopener noreferrer">Tags</a>: syntax rules, colours, descriptions, and tag filters</li>
+      <li data-i18n-html="lesson06.t125"><a href="https://actualbudget.org/docs/transactions/payee-locations" target="_blank" rel="noopener noreferrer">Payee Locations</a>: saving and using nearby payees on your phone</li>
     </ul>
   </div>
 
   <div class="next-bar">
-    <div class="next-bar-info"><p><span data-i18n="lesson06.t112">Up next - Lesson 07</span></p><strong><span data-i18n="lesson06.t113">Rules &amp; Automation: Let Actual Do the Work For You</span></strong></div>
+    <div class="next-bar-info"><p><span data-i18n="lesson06.t112">Up next - Lesson 07</span></p><strong><span data-i18n="lesson06.t113">Rules &amp; Schedules: Let Actual Do the Work For You</span></strong></div>
     <button class="next-btn" type="button" data-next-index="6" data-i18n="lesson06.t114">Next Lesson →</button>
   </div>

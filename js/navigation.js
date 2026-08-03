@@ -87,11 +87,18 @@ function selectMode(mode) {
   selectedMode = mode;
   lessonThreeMode = mode;
   syncBudgetModeUI(document);
+  // Choosing Tracking on lesson 02 reveals a section that is hidden for Envelope.
+  notifyContentChange();
 }
 
 function setLessonThreeMode(mode) {
   lessonThreeMode = mode;
   updateLessonThreeToggle(document);
+  notifyContentChange();
+}
+
+function notifyContentChange() {
+  document.dispatchEvent(new CustomEvent('actualtutorial:contentchange'));
 }
 
 function updateModeSelection(root) {

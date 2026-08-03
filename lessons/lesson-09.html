@@ -82,7 +82,7 @@
     </div>
     <div class="call cs">
       <span class="call-ic">🧭</span>
-      <div data-i18n-html="lesson09.t041"><strong>The practical decision:</strong> there is no required graduation path from Tracking to Envelope. Choose based on your need for control and the maintenance level you accept. You can change modes later, but do not rely on switching as the learning plan because historical budget values do not always carry the same meaning between modes.</div>
+      <div data-i18n-html="lesson09.t041"><strong>The practical decision:</strong> there is no required graduation path from Tracking to Envelope. Choose based on your need for control and the maintenance level you accept. You can change modes at any time, and each mode keeps its own budget figures (switching back restores them), but amounts do not carry across between modes, so don't rely on switching as a way to move your numbers.</div>
     </div>
   </div>
 
@@ -107,6 +107,7 @@
         <tr><td data-i18n="lesson09.t070">Selected transactions</td><td><kbd>L</kbd></td><td data-i18n="lesson09.t071">Toggle cleared status for selected transactions</td></tr>
         <tr><td data-i18n="lesson09.t072">Selected transactions</td><td><kbd>S</kbd></td><td data-i18n="lesson09.t073">Link or view schedule for the selected transaction</td></tr>
         <tr><td data-i18n="lesson09.t074">Selected transactions</td><td><kbd>G</kbd></td><td data-i18n="lesson09.t075">Merge two selected transactions when their amounts are equal</td></tr>
+        <tr><td data-i18n="lesson09.t128">Selected transactions</td><td><kbd>R</kbd></td><td data-i18n="lesson09.t129">Turn two selected transactions into a transfer, when they are a valid matching pair</td></tr>
       </tbody>
     </table>
     <p style="font-size:13px;color:var(--ink3);margin-top:10px" data-i18n-html="lesson09.t076">Full official reference: <a href="https://actualbudget.org/docs/getting-started/tips-tricks/#keyboard-shortcuts" target="_blank" rel="noopener noreferrer">Keyboard Shortcuts</a>.</p>
@@ -134,6 +135,14 @@
         <div class="mini-card-title" data-i18n="lesson09.t086">Multi-Currency</div>
         <p style="font-size:13px;color:var(--ink2)" data-i18n="lesson09.t087">Actual does not currently support native multi-currency. If you have accounts in multiple currencies, read the docs before adding them so you choose the right workaround.</p>
       </div>
+      <div class="mini-card">
+        <div class="mini-card-title" data-i18n="lesson09.t130">Themes</div>
+        <p style="font-size:13px;color:var(--ink2)" data-i18n="lesson09.t131">Settings → Themes offers built-in Light, Dark, Midnight, and Auto. Community themes such as Nord and Gruvbox can be installed from the catalog, or you can paste your own CSS. This is a stable feature now, not an experiment.</p>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-title" data-i18n="lesson09.t132">Scripting: CLI and API</div>
+        <p style="font-size:13px;color:var(--ink2)" data-i18n="lesson09.t133">The Actual CLI is stable and gives you command-line access to a budget. The API adds functions to import and export a budget file and to read your formatting preferences, which is enough to automate backups or build a custom importer. Neither is needed for normal use.</p>
+      </div>
     </div>
   </div>
 
@@ -143,10 +152,10 @@
     <p data-i18n="lesson09.t090">Experimental features are optional tools that are still being developed. They may be incomplete, change later, or be removed. Do not make them the foundation of your beginner workflow.</p>
     <div class="steps">
       <div class="step"><div class="sn">1</div><div class="step-b"><div class="step-t" data-i18n="lesson09.t091">Use Actual normally first</div><span data-i18n="lesson09.t092">Settle accounts, categories, importing, Rules, and reconciliation before enabling experiments.</span></div></div>
-      <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t" data-i18n="lesson09.t093">Make a backup before enabling</div><span data-i18n="lesson09.t094">This matters especially before trying Budget Templates or Rule Action Templating.</span></div></div>
+      <div class="step"><div class="sn">2</div><div class="step-b"><div class="step-t" data-i18n="lesson09.t093">Make a backup before enabling</div><span data-i18n="lesson09.t094">This matters especially before trying Budget Automation, which can rewrite a whole month of budget amounts in one click.</span></div></div>
       <div class="step"><div class="sn g">3</div><div class="step-b"><div class="step-t" data-i18n="lesson09.t095">Enable one feature at a time</div><span data-i18n="lesson09.t096">Understand its effect on your budget before adding another one.</span></div></div>
     </div>
-    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson09.t097"><strong>Most useful later:</strong> Budget Templates for filling budget amounts, Rule Action Templating for advanced rules, and experimental reports for deeper analysis.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson09.t097"><strong>Most useful later:</strong> <strong>Budget Automation</strong> for filling budget amounts, which now has a proper editor and supersedes the old note-based Budget Templates; <strong>Excel formula mode</strong> for calculated rule actions and Formula cards, which supersedes Rule Action Templating; and the experimental reports (Sankey, Balance Forecast, Budget Analysis) for deeper analysis.</div></div>
   </div>
 
   <div class="concept">
@@ -164,11 +173,11 @@
       </div>
       <div style="padding:16px 0;border-bottom:1px solid var(--border)">
         <p style="font-weight:600;margin-bottom:6px" data-i18n="lesson09.t104">Q: Can I sync my bank?</p>
-        <p style="font-size:14px;color:var(--ink2)" data-i18n-html="lesson09.t105"><strong>A:</strong> Yes, if your setup and provider are supported. Actual supports SimpleFIN for North America, Pluggy.ai for Brazil, and GoCardless BankAccountData for existing EU/UK users. Bank Sync works with the desktop app through its bundled local server, or with an actual-server setup, and you click Bank Sync manually to fetch new transactions. Provider credentials are stored on the local server or the server you use.</p>
+        <p style="font-size:14px;color:var(--ink2)" data-i18n-html="lesson09.t105"><strong>A:</strong> Yes, if your setup and provider are supported. Actual supports SimpleFIN for North America, Pluggy.ai for Brazil, Akahu for New Zealand, and Enable Banking for Europe. Australia has no official provider, but the third-party Redbark service bridges Australian banks in through SimpleFIN. Bank Sync works with the desktop app through its bundled local server, or with an actual-server setup, and you click Bank Sync manually to fetch new transactions. Provider credentials are stored on the local server or the server you use. Providers set their own terms and some charge a subscription, so check before you depend on it.</p>
       </div>
       <div style="padding:16px 0;border-bottom:1px solid var(--border)">
         <p style="font-weight:600;margin-bottom:6px" data-i18n="lesson09.t106">Q: Is there a mobile app?</p>
-        <p style="font-size:14px;color:var(--ink2)" data-i18n-html="lesson09.t107"><strong>A:</strong> The dedicated mobile apps are no longer maintained. Use Actual in your phone's browser - the interface is responsive and works well. On iOS, tap Share → "Add to Home Screen" for a full-screen app experience. On Android, use "Add to Home Screen" from the browser menu.</p>
+        <p style="font-size:14px;color:var(--ink2)" data-i18n-html="lesson09.t107"><strong>A:</strong> There is no official mobile app; the earlier ones are no longer maintained. Use Actual in your phone's browser instead, since the interface is responsive and works well. On iOS, tap Share → "Add to Home Screen" for a full-screen app experience. On Android, use "Add to Home Screen" from the browser menu. If you self-host, the community also builds an iOS app called <a href="https://github.com/MattFaz/actuali" target="_blank" rel="noopener noreferrer">Actuali</a> and an iOS home-screen widget, both listed on Actual's <a href="https://actualbudget.org/docs/community-repos" target="_blank" rel="noopener noreferrer">community projects</a> page. These are community-built, not official, so judge them on that basis.</p>
       </div>
       <div style="padding:16px 0;border-bottom:1px solid var(--border)">
         <p style="font-weight:600;margin-bottom:6px" data-i18n="lesson09.t108">Q: What if I overspend a category badly in Tracking mode?</p>
@@ -198,13 +207,15 @@
     <h2><span data-i18n="lesson09.t118">Where to go next</span></h2>
     <ul class="plain">
       <li data-i18n-html="lesson09.t119"><a href="https://actualbudget.org/docs/getting-started/tracking-budget" target="_blank" rel="noopener noreferrer">Tracking Budget official documentation</a></li>
-      <li data-i18n-html="lesson09.t120"><a href="https://actualbudget.org/docs/getting-started/envelope-budgeting" target="_blank" rel="noopener noreferrer">Envelope Budgeting guide</a> — official details for the cash-control workflow</li>
-      <li data-i18n-html="lesson09.t121"><a href="https://actualbudget.org/docs/budgeting/rules/" target="_blank" rel="noopener noreferrer">Rules documentation</a> — full reference for advanced automation</li>
-      <li data-i18n-html="lesson09.t122"><a href="https://actualbudget.org/docs/schedules/" target="_blank" rel="noopener noreferrer">Schedules</a>, <a href="https://actualbudget.org/docs/transactions/split-transactions/" target="_blank" rel="noopener noreferrer">Split Transactions</a>, and <a href="https://actualbudget.org/docs/advanced/bank-sync/" target="_blank" rel="noopener noreferrer">Connecting Your Bank</a> — practical transaction references</li>
-      <li data-i18n-html="lesson09.t123"><a href="https://actualbudget.org/docs/backup-restore/backup/" target="_blank" rel="noopener noreferrer">Backup</a>, <a href="https://actualbudget.org/docs/backup-restore/restore/" target="_blank" rel="noopener noreferrer">Restore</a>, and <a href="https://actualbudget.org/docs/getting-started/sync/" target="_blank" rel="noopener noreferrer">Syncing Across Devices</a> — safety and operations</li>
-      <li data-i18n-html="lesson09.t124"><a href="https://actualbudget.org/docs/experimental/goal-templates" target="_blank" rel="noopener noreferrer">Budget Templates (experimental)</a> — auto-fill budget amounts each month</li>
-      <li data-i18n-html="lesson09.t125"><a href="https://actualbudget.org/docs/experimental/" target="_blank" rel="noopener noreferrer">Experimental Features</a> and <a href="https://actualbudget.org/docs/budgeting/multi-currency/" target="_blank" rel="noopener noreferrer">Multi-Currency</a> — read only when needed</li>
-      <li data-i18n-html="lesson09.t126"><a href="https://discord.gg/8JfAXSgfRf" target="_blank" rel="noopener noreferrer">Community Discord</a> — the fastest way to get help from real users</li>
-      <li data-i18n-html="lesson09.t127"><a href="https://github.com/actualbudget/actual" target="_blank" rel="noopener noreferrer">GitHub</a> — report bugs and track new features</li>
+      <li data-i18n-html="lesson09.t120"><a href="https://actualbudget.org/docs/getting-started/envelope-budgeting" target="_blank" rel="noopener noreferrer">Envelope Budgeting guide</a> - official details for the cash-control workflow</li>
+      <li data-i18n-html="lesson09.t121"><a href="https://actualbudget.org/docs/budgeting/rules/" target="_blank" rel="noopener noreferrer">Rules documentation</a> - full reference for advanced automation</li>
+      <li data-i18n-html="lesson09.t122"><a href="https://actualbudget.org/docs/schedules/" target="_blank" rel="noopener noreferrer">Schedules</a>, <a href="https://actualbudget.org/docs/transactions/split-transactions/" target="_blank" rel="noopener noreferrer">Split Transactions</a>, and <a href="https://actualbudget.org/docs/advanced/bank-sync/" target="_blank" rel="noopener noreferrer">Connecting Your Bank</a> - practical transaction references</li>
+      <li data-i18n-html="lesson09.t123"><a href="https://actualbudget.org/docs/backup-restore/backup/" target="_blank" rel="noopener noreferrer">Backup</a>, <a href="https://actualbudget.org/docs/backup-restore/restore/" target="_blank" rel="noopener noreferrer">Restore</a>, and <a href="https://actualbudget.org/docs/getting-started/sync/" target="_blank" rel="noopener noreferrer">Syncing Across Devices</a> - safety and operations</li>
+      <li data-i18n-html="lesson09.t124"><a href="https://actualbudget.org/docs/experimental/budget-automation" target="_blank" rel="noopener noreferrer">Budget Automation (experimental)</a> and the older <a href="https://actualbudget.org/docs/experimental/goal-templates" target="_blank" rel="noopener noreferrer">Budget Templates</a>: auto-fill budget amounts each month</li>
+      <li data-i18n-html="lesson09.t134"><a href="https://actualbudget.org/docs/experimental/formulas" target="_blank" rel="noopener noreferrer">Formulas (experimental)</a>: calculated rule actions and Formula cards on the dashboard</li>
+      <li data-i18n-html="lesson09.t125"><a href="https://actualbudget.org/docs/experimental/" target="_blank" rel="noopener noreferrer">Experimental Features</a> and <a href="https://actualbudget.org/docs/budgeting/multi-currency/" target="_blank" rel="noopener noreferrer">Multi-Currency</a> - read only when needed</li>
+      <li data-i18n-html="lesson09.t126"><a href="https://discord.gg/8JfAXSgfRf" target="_blank" rel="noopener noreferrer">Community Discord</a> - the fastest way to get help from real users</li>
+      <li data-i18n-html="lesson09.t127"><a href="https://github.com/actualbudget/actual" target="_blank" rel="noopener noreferrer">GitHub</a> - report bugs and track new features</li>
     </ul>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson09.t135">Actual ships a release every month, so screens and features move. The <a href="https://actualbudget.org/docs/releases" target="_blank" rel="noopener noreferrer">Release Notes</a> are the quickest way to see what changed since you last read this course.</div></div>
   </div>
