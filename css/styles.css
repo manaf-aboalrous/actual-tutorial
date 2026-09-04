@@ -7,6 +7,10 @@
   --red:#dc2626;--red-bg:#fef2f2;--red-border:#fca5a5;
   --purple:#7c3aed;--purple-bg:#f5f3ff;--purple-border:#c4b5fd;
   --radius:12px;--radius-sm:8px;
+  /* Where an outline jump comes to rest, measured from the top of the window.
+     Must clear the sticky .pnav (~45px). Read by js/toc.js too, so this is the
+     only place to change it. */
+  --toc-scroll-offset:120px;
   --shadow:0 1px 3px rgba(0,0,0,.05),0 8px 24px rgba(0,0,0,.06);
   --shadow-sm:0 1px 3px rgba(0,0,0,.07);
 }
@@ -456,8 +460,10 @@ body.ar .transfer-category-table td {
 }
 .toc { display: none; }
 
-/* Headings are jump targets, so clear the sticky .pnav when scrolled to. */
-#lesson-container h2 { scroll-margin-top: 64px; }
+/* The outline scrolls to the whole .concept card so its coloured tag and top
+   edge stay visible, not just the heading inside it. */
+#lesson-container .concept,
+#lesson-container h2 { scroll-margin-top: var(--toc-scroll-offset, 120px); }
 
 @media (min-width: 1280px) {
   .layout {

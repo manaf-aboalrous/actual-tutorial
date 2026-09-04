@@ -6,6 +6,13 @@ const MIN_SECTIONS = 2;
 
 let observer = null;
 
+// Single source of truth lives in css/styles.css as --toc-scroll-offset, so the
+// resting position and the scroll-spy band can never drift apart.
+function scrollOffset() {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue('--toc-scroll-offset');
+  return parseInt(raw, 10) || 120;
+}
+
 function isVisible(element) {
   // Lesson 03 hides one of its two mode branches; offsetParent is null for those.
   return element.offsetParent !== null;
@@ -51,11 +58,17 @@ export function buildToc() {
     link.href = `#${heading.id}`;
     link.textContent = label(heading);
     link.dataset.tocTarget = heading.id;
+    // Scroll to the whole card when there is one, so its coloured tag and top
+    // edge are not left behind the sticky nav bar.
     // The ids are positional and are reassigned whenever the outline rebuilds,
     // so they are deliberately not written to the URL.
+    const target = heading.closest('.concept') || heading;
     link.addEventListener('click', (event) => {
       event.preventDefault();
-      heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Positioned in JS rather than via scroll-margin-top so the offset still
+      // applies even if the stylesheet is stale or the custom property is missing.
+      const top = target.getBoundingClientRect().top + window.scrollY - scrollOffset();
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     });
     item.appendChild(link);
     list.appendChild(item);
@@ -90,7 +103,9 @@ function observeSections(found) {
       if (isActive) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
     });
-  }, { rootMargin: '-56px 0px -70% 0px', threshold: 0 });
+    // Top inset matches the scroll offset so the highlight agrees with where a
+    // jump actually lands.
+  }, { rootMargin: `-${scrollOffset()}px 0px -70% 0px`, threshold: 0 });
 
   found.forEach((heading) => observer.observe(heading));
 }
