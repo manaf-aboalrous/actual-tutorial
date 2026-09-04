@@ -70,7 +70,7 @@
       </div>
     </div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n="lesson06.t036">For a calmer start, create the account with a correct balance on a recent date, then enable Bank Sync. Reconciliation is easier when only new transactions arrive after your start point.</div></div>
-    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t036a"><strong>Bank Sync needs one-time setup.</strong> It requires a server (the desktop app's bundled server or an actual-server) plus your own provider credentials/config; it isn't just "click connect." Sync is manual: you click Bank Sync to fetch. Note that bank-sync tokens are not covered by end-to-end encryption, so a server admin with database access could read them.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t036a"><strong>Bank Sync needs one-time setup.</strong> It requires a server (the desktop app's bundled server or an actual-server) plus your own provider credentials, so it isn't just "click connect." Note that bank-sync tokens are not covered by end-to-end encryption, so a server admin with database access could read them.</div></div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t115">The provider setup and account linking screens were redesigned, and if a sync fails the error status now stays visible across your devices instead of disappearing on reload. Pluggy.ai users can also choose whether credentials are stored for the whole server or just one budget file.</div></div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t126"><strong>Check the cost before you rely on it.</strong> The sync providers are independent services with their own terms, and some of them charge a subscription. Look at the provider's own pricing before building a routine around it. File import always stays free, so nothing here blocks you from using Actual fully.</div></div>
     <div class="call ci" style="margin-top:14px">
@@ -113,6 +113,7 @@
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n="lesson06.t058">Your simple routine: review new transactions, clean the payee when needed, choose the category, then let Rules learn from your decisions.</div></div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t058a"><strong>Quick math:</strong> in any amount field you can type an expression like <code style="background:#f3f4f6;padding:1px 5px;border-radius:3px">16.99*1.1</code> and Actual will calculate the result for you.</div></div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t123">Transactions that share a date can be reordered by <strong>dragging</strong> them, which is useful when several entries land on the same day and you want them to read in the order they actually happened.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson06.t128"><strong>The columns are yours to arrange.</strong> The transaction table has a column manager that lets you show, hide, and reorder columns, including a <strong>Group</strong> column that shows which category group each transaction's category sits in.</div></div>
   </div>
 
   <div class="concept">
@@ -150,7 +151,7 @@
     </div>
     <div class="call ci" style="margin-top:12px">
       <span class="call-ic">📍</span>
-      <div data-i18n-html="lesson06.t122"><strong>Payee Locations (phone only).</strong> When you enter a transaction on your phone, you can tap Save on a payee to remember where you are standing. Next time you are within about 500 metres, that payee appears under <strong>Nearby Payees</strong> in the autocomplete, which makes entering cash spending at the same few shops much faster. Your location is captured only when you tap Save, it is stored inside your own budget file and synced only to your own devices, and the browser needs an HTTPS connection plus permission to share location. Tap Forget at the same spot to remove it.</div>
+      <div data-i18n-html="lesson06.t122"><strong>Payee Locations (phone only).</strong> When you enter a transaction on your phone, tap Save on a payee to remember where you are standing. Next time you are within about 500 metres, that payee appears under <strong>Nearby Payees</strong> in the autocomplete, which makes entering cash spending at the same few shops much faster. The location is stored inside your own budget file and synced only to your own devices; tap Forget at the same spot to remove it.</div>
     </div>
 
     <h3 style="margin-top:20px" data-i18n="lesson06.t077">Tags - cross-category labels</h3>
@@ -169,10 +170,6 @@
 
     <h3 style="margin-top:20px" data-i18n="lesson06.t081">Bulk editing - update many transactions at once</h3>
     <p style="font-size:14px;color:var(--ink2)" data-i18n="lesson06.t082">Check the box on the left of multiple transactions, then use the toolbar to change category, payee, notes, account, or delete them all at once. Use Filters first to narrow down to exactly what you want to change.</p>
-    <div class="call cw">
-      <span class="call-ic">⚠️</span>
-      <div data-i18n="lesson06.t083">Bulk editing doesn't work well with split transactions. Avoid selecting split transactions when using bulk actions.</div>
-    </div>
   </div>
   <div class="concept">
     <span class="concept-tag amber"><span data-i18n="lesson06.t084">Practical</span></span>

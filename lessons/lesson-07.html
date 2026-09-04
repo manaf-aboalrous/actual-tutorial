@@ -67,7 +67,7 @@
         <tr><td><code class="kp">&gt; / &lt;</code></td><td data-i18n="lesson07.t041">Amount comparisons</td><td data-i18n-html="lesson07.t042">Amount <code class="kp">&gt;</code> $500</td></tr>
       </tbody>
     </table>
-    <p style="font-size:13px;color:var(--ink3);margin-top:10px" data-i18n="lesson07.t043">Conditions can check: imported payee, payee, account, category, date, notes, amount (inflow or outflow). All string matching is case-insensitive.</p>
+    <p style="font-size:13px;color:var(--ink3);margin-top:10px" data-i18n="lesson07.t043">Conditions can check: imported payee, payee, account, category, date, notes, amount (inflow or outflow), and cleared status. All string matching is case-insensitive.</p>
     <p style="font-size:13px;color:var(--ink3);margin-top:8px" data-i18n="lesson07.t044">Actions can set: payee, category, notes, account, date, amount, cleared status. They can also append or prepend text to notes.</p>
   </div>
 
@@ -179,6 +179,7 @@
       </div>
     </div>
     <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson07.t111">If a due date lands on a weekend, <strong>Move schedule</strong> shifts it to the working day before or after. Schedules do not know about public holidays, so those still need a manual nudge.</div></div>
+    <div class="tip"><span class="tip-ic">💡</span><div data-i18n-html="lesson07.t130"><strong>Shortcut from a transaction you already typed.</strong> Enter a transaction dated in the future and Actual offers a <strong>Schedule</strong> button on it. That opens this same dialog with the date, payee, and amount already filled in, which is the quickest way to turn a bill you just recorded into a repeating schedule.</div></div>
     <div class="call cw" style="margin-top:14px">
       <span class="call-ic">⚠️</span>
       <div data-i18n-html="lesson07.t112"><strong>Automatically add transaction is the one decision to think about.</strong> Leave it off and the schedule shows up as an upcoming reminder that you approve when the real transaction arrives. Turn it on and Actual posts the transaction on every scheduled date whether or not the money actually moved. Auto-add suits fixed, reliable payments like a mortgage. For anything variable, manual approval keeps your balance honest.</div>
